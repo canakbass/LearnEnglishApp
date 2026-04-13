@@ -90,6 +90,7 @@ fun WordListScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddWordScreen(viewModel: WordListViewModel, onBack: () -> Unit) {
     var engWord by remember { mutableStateOf("") }
@@ -112,6 +113,7 @@ fun AddWordScreen(viewModel: WordListViewModel, onBack: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(12.dp))
 
+        @Suppress("DEPRECATION")
         OutlinedTextField(
             value = turWord, onValueChange = { turWord = it },
             label = { Text("Türkçe Karşılığı") },

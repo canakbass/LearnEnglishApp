@@ -62,7 +62,7 @@ fun QuizScreen(viewModel: QuizViewModel) {
             is QuizUiState.QuizActive -> {
                 // İlerleme çubuğu
                 LinearProgressIndicator(
-                    progress = { (state.questionIndex + 1f) / state.totalQuestions },
+                    progress = (state.questionIndex + 1f) / state.totalQuestions,
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primary,
                     trackColor = MaterialTheme.colorScheme.surfaceVariant
