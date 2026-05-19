@@ -13,4 +13,10 @@ interface QuizAnswerDao {
 
     @Query("SELECT * FROM quiz_answers")
     suspend fun getAllAnswers(): List<QuizAnswerEntity>
+
+    @Query("DELETE FROM quiz_answers")
+    suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAnswers(answers: List<QuizAnswerEntity>)
 }

@@ -26,7 +26,8 @@ data class WordProgressEntity(
     val reviewStage: Int = 0,
     val totalCorrect: Int = 0,
     val totalAttempts: Int = 0,
-    val nextReviewDate: Long = System.currentTimeMillis(),
+    // 0 = hiç görünmemiş yeni kelime (getDueWords: totalAttempts > 0 şartı ile korunuyor)
+    val nextReviewDate: Long = 0L,
     val lastAnsweredDate: Long = 0L,
     val isLearned: Int = 0
 )

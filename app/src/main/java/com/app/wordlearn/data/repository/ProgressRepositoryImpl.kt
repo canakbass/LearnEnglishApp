@@ -16,8 +16,8 @@ class ProgressRepositoryImpl @Inject constructor(
     override suspend fun getProgress(wordId: Int): WordProgress? =
         wordProgressDao.getProgressByWordId(wordId)?.toDomain()
 
-    override suspend fun getDueWords(today: Long): List<WordProgress> =
-        wordProgressDao.getDueWords(today).map { it.toDomain() }
+    override suspend fun getDueWords(today: Long, startOfDay: Long): List<WordProgress> =
+        wordProgressDao.getDueWords(today, startOfDay).map { it.toDomain() }
 
     override suspend fun getNewWords(count: Int): List<WordProgress> =
         wordProgressDao.getNewWords(count).map { it.toDomain() }
@@ -39,4 +39,7 @@ class ProgressRepositoryImpl @Inject constructor(
 
     override suspend fun getProgressCount(): Int =
         wordProgressDao.getProgressCount()
+
+    override suspend fun getAnsweredTodayCount(startOfDay: Long): Int =
+        wordProgressDao.getAnsweredTodayCount(startOfDay)
 }

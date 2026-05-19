@@ -2,6 +2,7 @@ package com.app.wordlearn.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
@@ -13,7 +14,8 @@ import androidx.room.PrimaryKey
             childColumns = ["wordId"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    indices = [Index(value = ["wordId"])]
 )
 data class WordSampleEntity(
     @PrimaryKey(autoGenerate = true)

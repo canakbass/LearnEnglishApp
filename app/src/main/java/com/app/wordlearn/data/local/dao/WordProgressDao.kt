@@ -8,8 +8,8 @@ interface WordProgressDao {
     @Query("SELECT * FROM word_progress WHERE wordId = :wordId")
     suspend fun getProgressByWordId(wordId: Int): WordProgressEntity?
 
-    @Query("SELECT * FROM word_progress WHERE nextReviewDate <= :today AND isLearned = 0")
-    suspend fun getDueWords(today: Long): List<WordProgressEntity>
+    @Query("SELECT * FROM word_progress WHERE nextReviewDate <= :today AND isLearned = 0 AND totalAttempts > 0 AND lastAnsweredDate < :startOfDay")
+    suspend fun getDueWords(today: Long, startOfDay: Long): List<WordProgressEntity>
 
     @Query("SELECT * FROM word_progress WHERE totalAttempts = 0 AND isLearned = 0 ORDER BY RANDOM() LIMIT :count")
     suspend fun getNewWords(count: Int): List<WordProgressEntity>
@@ -31,4 +31,13 @@ interface WordProgressDao {
 
     @Query("SELECT COUNT(*) FROM word_progress")
     suspend fun getProgressCount(): Int
+
+    @Query("SELECT COUNT(*) FROM word_progress WHERE lastAnsweredDate >= :startOfDay AND totalAttempts > 0")
+    suspend fun getAnsweredTodayCount(startOfDay: Long): Int
+
+    @Query("DELETE FROM word_progress")
+    suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(progress: List<WordProgressEntity>)
 }

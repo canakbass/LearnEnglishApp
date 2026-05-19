@@ -3,7 +3,14 @@ package com.app.wordlearn.di
 import android.content.Context
 import androidx.room.Room
 import com.app.wordlearn.data.local.AppDatabase
-import com.app.wordlearn.data.local.dao.*
+import com.app.wordlearn.data.local.MIGRATION_3_4
+import com.app.wordlearn.data.local.dao.QuizAnswerDao
+import com.app.wordlearn.data.local.dao.QuizSessionDao
+import com.app.wordlearn.data.local.dao.SettingsDao
+import com.app.wordlearn.data.local.dao.WordDao
+import com.app.wordlearn.data.local.dao.WordProgressDao
+import com.app.wordlearn.data.local.dao.WordSampleDao
+import com.app.wordlearn.domain.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,15 +21,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "wordlearn_db"
-        ).build()
+            Constants.DATABASE_NAME
+        )
+            .addMigrations(MIGRATION_3_4)
+            .build()
     }
 
     @Provides
@@ -42,4 +50,7 @@ object DatabaseModule {
 
     @Provides
     fun provideSettingsDao(database: AppDatabase): SettingsDao = database.settingsDao()
+
+    @Provides
+    fun provideStoryDao(database: AppDatabase): com.app.wordlearn.data.local.dao.StoryDao = database.storyDao()
 }

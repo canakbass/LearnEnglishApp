@@ -16,4 +16,10 @@ interface QuizSessionDao {
 
     @Update
     suspend fun updateSession(session: QuizSessionEntity)
+
+    @Query("DELETE FROM quiz_sessions")
+    suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSessions(sessions: List<QuizSessionEntity>)
 }

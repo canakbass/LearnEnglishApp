@@ -4,7 +4,7 @@ import com.app.wordlearn.domain.model.WordProgress
 
 interface ProgressRepository {
     suspend fun getProgress(wordId: Int): WordProgress?
-    suspend fun getDueWords(today: Long): List<WordProgress>
+    suspend fun getDueWords(today: Long, startOfDay: Long): List<WordProgress>
     suspend fun getNewWords(count: Int): List<WordProgress>
     suspend fun updateProgress(progress: WordProgress)
     suspend fun getLearnedWords(): List<WordProgress>
@@ -12,4 +12,5 @@ interface ProgressRepository {
     suspend fun createProgress(progress: WordProgress)
     suspend fun getAllProgress(): List<WordProgress>
     suspend fun getProgressCount(): Int
+    suspend fun getAnsweredTodayCount(startOfDay: Long): Int
 }

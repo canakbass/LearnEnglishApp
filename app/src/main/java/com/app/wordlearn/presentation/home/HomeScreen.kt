@@ -6,12 +6,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun HomeScreen(
+    userName: String = "",
     onStartQuiz: () -> Unit,
     onNavigateToWordle: () -> Unit,
     onNavigateToWordChain: () -> Unit
@@ -36,6 +36,16 @@ fun HomeScreen(
             fontSize = 14.sp,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )
+
+        if (userName.isNotBlank()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                "Hoş geldin, $userName! 👋",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+            )
+        }
 
         Spacer(modifier = Modifier.height(48.dp))
 

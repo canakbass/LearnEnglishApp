@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "190133037541",
+    "project_id": "englishwordsapp-72975",
+    "storage_bucket": "englishwordsapp-72975.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190133037541:android:60e7d1f40e7fde2cf1670c",
+        "android_client_info": {
+          "package_name": "com.app.wordlearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190133037541-17isl7heleda1pcd4lna6ljr08sbb2q0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNh_HbOclMuxl0lQAu1X3L_DqeoRZouKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190133037541-17isl7heleda1pcd4lna6ljr08sbb2q0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

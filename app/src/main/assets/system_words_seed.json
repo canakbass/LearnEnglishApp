@@ -1,0 +1,7002 @@
+[
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn apple at school."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say car in English?"
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word cat every day."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained house."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word teacher every day."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say student in English?"
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word water every day."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word city every day."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say music in English?"
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained family."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say window in English?"
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn drink at school."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn write at school."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say watch in English?"
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word play every day."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn happy at school."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word sad every day."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say small in English?"
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn fast at school."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say red in English?"
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word blue every day."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word green every day."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say white in English?"
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn apple at school."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word car every day."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn cat at school."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say house in English?"
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say teacher in English?"
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word student every day."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say water in English?"
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say food in English?"
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say city in English?"
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say music in English?"
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say table in English?"
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say eat in English?"
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn sleep at school."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn study at school."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn speak at school."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say play in English?"
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word happy every day."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn slow at school."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn beautiful at school."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say blue in English?"
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say green in English?"
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say black in English?"
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn book at school."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word car every day."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word cat every day."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained house."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn school at school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word teacher every day."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say student in English?"
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say food in English?"
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say phone in English?"
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word city every day."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word music every day."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word walk every day."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say speak in English?"
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say play in English?"
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn big at school."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained small."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn fast at school."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn strong at school."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn old at school."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word blue every day."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say green in English?"
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word black every day."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn cat at school."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite house."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn school at school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn food at school."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say city in English?"
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn friend at school."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn family at school."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn chair at school."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say window in English?"
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word run every day."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn walk at school."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say drink in English?"
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say study in English?"
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word read every day."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say speak in English?"
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word play every day."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say sad in English?"
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn big at school."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained small."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say strong in English?"
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn old at school."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say red in English?"
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn blue at school."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say green in English?"
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word white every day."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn apple at school."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn book at school."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn dog at school."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn school at school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say teacher in English?"
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite student."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say food in English?"
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn table at school."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word eat every day."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say sleep in English?"
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn study at school."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word listen every day."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word sad every day."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say small in English?"
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say fast in English?"
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn strong at school."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn old at school."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say blue in English?"
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say black in English?"
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word book every day."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn car at school."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say cat in English?"
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word school every day."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained student."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say music in English?"
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn run at school."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word read every day."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn listen at school."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn speak at school."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say play in English?"
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word happy every day."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say sad in English?"
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say big in English?"
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn slow at school."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word young every day."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn black at school."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word white every day."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn cat at school."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say house in English?"
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word teacher every day."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word student every day."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word water every day."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word phone every day."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn table at school."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn run at school."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn walk at school."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn eat at school."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn read at school."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word speak every day."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn watch at school."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word young every day."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn green at school."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say black in English?"
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say white in English?"
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word apple every day."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word book every day."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn car at school."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite student."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word phone every day."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word city every day."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn music at school."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say table in English?"
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn window at school."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word run every day."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say walk in English?"
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word study every day."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word write every day."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn listen at school."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn watch at school."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word happy every day."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say small in English?"
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn fast at school."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn young at school."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say old in English?"
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn green at school."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say black in English?"
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word book every day."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn cat at school."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say house in English?"
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite student."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say music in English?"
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn family at school."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn window at school."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say walk in English?"
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say drink in English?"
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say sleep in English?"
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn listen at school."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn happy at school."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn strong at school."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn blue at school."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word black every day."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word white every day."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say car in English?"
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say house in English?"
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say water in English?"
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say window in English?"
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn walk at school."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say study in English?"
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word speak every day."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn watch at school."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say play in English?"
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn happy at school."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word sad every day."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained small."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word beautiful every day."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say strong in English?"
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say old in English?"
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn red at school."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn blue at school."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn green at school."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say black in English?"
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say white in English?"
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say cat in English?"
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn house at school."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word school every day."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say water in English?"
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say food in English?"
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn city at school."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say music in English?"
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say chair in English?"
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word walk every day."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn eat at school."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say sleep in English?"
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn write at school."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word slow every day."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn young at school."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say red in English?"
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word blue every day."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word black every day."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word apple every day."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say car in English?"
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word student every day."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word phone every day."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn city at school."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite family."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say chair in English?"
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say door in English?"
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn walk at school."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word eat every day."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn sleep at school."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn study at school."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn write at school."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word read every day."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word listen every day."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn watch at school."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn happy at school."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn fast at school."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word old every day."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say blue in English?"
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word apple every day."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word book every day."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn dog at school."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word cat every day."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn house at school."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say student in English?"
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word water every day."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn music at school."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn family at school."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word chair every day."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word run every day."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn walk at school."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn write at school."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say watch in English?"
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say play in English?"
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say happy in English?"
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word old every day."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn black at school."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word dog every day."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say cat in English?"
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say teacher in English?"
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained student."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say food in English?"
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn city at school."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word music every day."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn eat at school."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn study at school."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word speak every day."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained watch."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say fast in English?"
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn red at school."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn blue at school."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say green in English?"
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word white every day."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn car at school."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn cat at school."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say house in English?"
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn teacher at school."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn food at school."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say computer in English?"
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn phone at school."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained family."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say chair in English?"
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn window at school."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say drink in English?"
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn sleep at school."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word study every day."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word listen every day."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word watch every day."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word play every day."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say happy in English?"
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained small."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say slow in English?"
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word beautiful every day."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word strong every day."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word young every day."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn red at school."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn green at school."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word book every day."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say car in English?"
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word cat every day."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained house."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say water in English?"
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say phone in English?"
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word city every day."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word family every day."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn table at school."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn window at school."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite run."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say eat in English?"
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word drink every day."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say sleep in English?"
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn study at school."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn speak at school."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say watch in English?"
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say happy in English?"
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say big in English?"
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word small every day."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word fast every day."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn strong at school."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say young in English?"
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word old every day."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say red in English?"
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word black every day."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn white at school."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word car every day."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite dog."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn house at school."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn school at school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say water in English?"
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word phone every day."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say city in English?"
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn door at school."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word walk every day."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn drink at school."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite write."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say listen in English?"
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn speak at school."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word watch every day."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word sad every day."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word big every day."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained small."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn slow at school."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn young at school."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite old."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say dog in English?"
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say cat in English?"
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say teacher in English?"
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word student every day."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn music at school."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word friend every day."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite family."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word chair every day."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "We learn window at school."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained door."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word run every day."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite walk."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn eat at school."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word sleep every day."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word write every day."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say speak in English?"
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say watch in English?"
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word sad every day."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn big at school."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say small in English?"
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say fast in English?"
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite beautiful."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained strong."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say old in English?"
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word red every day."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn black at school."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite book."
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained car."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word dog every day."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say cat in English?"
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word house every day."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word teacher every day."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say student in English?"
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word food every day."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn computer at school."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained music."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn friend at school."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word table every day."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word chair every day."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word window every day."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say door in English?"
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say walk in English?"
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word eat every day."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "I use the word study every day."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say read in English?"
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn speak at school."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word watch every day."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say sad in English?"
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained big."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn small at school."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained slow."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say beautiful in English?"
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word strong every day."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite young."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say old in English?"
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "Can you say red in English?"
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "Can you say blue in English?"
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "Can you say green in English?"
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite black."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word white every day."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite apple."
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn car at school."
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn dog at school."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "I use the word cat every day."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite house."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn school at school."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained teacher."
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn student at school."
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite water."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite computer."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn music at school."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained family."
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn chair at school."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word door every day."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say run in English?"
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "I use the word walk every day."
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite eat."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "This is my favorite sleep."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained study."
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "We learn write at school."
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "My teacher explained read."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained speak."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn watch at school."
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn play at school."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word happy every day."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn sad at school."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn big at school."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word small every day."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn fast at school."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn slow at school."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word beautiful every day."
+  },
+  {
+    "engWord": "strong",
+    "turWord": "güçlü",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "I use the word strong every day."
+  },
+  {
+    "engWord": "young",
+    "turWord": "genç",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "I use the word young every day."
+  },
+  {
+    "engWord": "old",
+    "turWord": "yaşlı",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word old every day."
+  },
+  {
+    "engWord": "red",
+    "turWord": "kırmızı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite red."
+  },
+  {
+    "engWord": "blue",
+    "turWord": "mavi",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite blue."
+  },
+  {
+    "engWord": "green",
+    "turWord": "yeşil",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "This is my favorite green."
+  },
+  {
+    "engWord": "black",
+    "turWord": "siyah",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "We learn black at school."
+  },
+  {
+    "engWord": "white",
+    "turWord": "beyaz",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained white."
+  },
+  {
+    "engWord": "apple",
+    "turWord": "elma",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "Can you say apple in English?"
+  },
+  {
+    "engWord": "book",
+    "turWord": "kitap",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say book in English?"
+  },
+  {
+    "engWord": "car",
+    "turWord": "araba",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say car in English?"
+  },
+  {
+    "engWord": "dog",
+    "turWord": "köpek",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn dog at school."
+  },
+  {
+    "engWord": "cat",
+    "turWord": "kedi",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained cat."
+  },
+  {
+    "engWord": "house",
+    "turWord": "ev",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn house at school."
+  },
+  {
+    "engWord": "school",
+    "turWord": "okul",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "I use the word school every day."
+  },
+  {
+    "engWord": "teacher",
+    "turWord": "öğretmen",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say teacher in English?"
+  },
+  {
+    "engWord": "student",
+    "turWord": "öğrenci",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "Can you say student in English?"
+  },
+  {
+    "engWord": "water",
+    "turWord": "su",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "We learn water at school."
+  },
+  {
+    "engWord": "food",
+    "turWord": "yemek",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "This is my favorite food."
+  },
+  {
+    "engWord": "computer",
+    "turWord": "bilgisayar",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "I use the word computer every day."
+  },
+  {
+    "engWord": "phone",
+    "turWord": "telefon",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained phone."
+  },
+  {
+    "engWord": "city",
+    "turWord": "şehir",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained city."
+  },
+  {
+    "engWord": "music",
+    "turWord": "müzik",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn music at school."
+  },
+  {
+    "engWord": "friend",
+    "turWord": "arkadaş",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained friend."
+  },
+  {
+    "engWord": "family",
+    "turWord": "aile",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "Can you say family in English?"
+  },
+  {
+    "engWord": "table",
+    "turWord": "masa",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "My teacher explained table."
+  },
+  {
+    "engWord": "chair",
+    "turWord": "sandalye",
+    "level": "A1",
+    "category": "noun",
+    "exampleSentence": "This is my favorite chair."
+  },
+  {
+    "engWord": "window",
+    "turWord": "pencere",
+    "level": "A2",
+    "category": "noun",
+    "exampleSentence": "My teacher explained window."
+  },
+  {
+    "engWord": "door",
+    "turWord": "kapı",
+    "level": "B1",
+    "category": "noun",
+    "exampleSentence": "We learn door at school."
+  },
+  {
+    "engWord": "run",
+    "turWord": "koşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word run every day."
+  },
+  {
+    "engWord": "walk",
+    "turWord": "yürümek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say walk in English?"
+  },
+  {
+    "engWord": "eat",
+    "turWord": "yemek yemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "We learn eat at school."
+  },
+  {
+    "engWord": "drink",
+    "turWord": "içmek",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained drink."
+  },
+  {
+    "engWord": "sleep",
+    "turWord": "uyumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn sleep at school."
+  },
+  {
+    "engWord": "study",
+    "turWord": "çalışmak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "Can you say study in English?"
+  },
+  {
+    "engWord": "write",
+    "turWord": "yazmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "Can you say write in English?"
+  },
+  {
+    "engWord": "read",
+    "turWord": "okumak",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "We learn read at school."
+  },
+  {
+    "engWord": "listen",
+    "turWord": "dinlemek",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "This is my favorite listen."
+  },
+  {
+    "engWord": "speak",
+    "turWord": "konuşmak",
+    "level": "A1",
+    "category": "verb",
+    "exampleSentence": "I use the word speak every day."
+  },
+  {
+    "engWord": "watch",
+    "turWord": "izlemek",
+    "level": "A2",
+    "category": "verb",
+    "exampleSentence": "Can you say watch in English?"
+  },
+  {
+    "engWord": "play",
+    "turWord": "oynamak",
+    "level": "B1",
+    "category": "verb",
+    "exampleSentence": "My teacher explained play."
+  },
+  {
+    "engWord": "happy",
+    "turWord": "mutlu",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained happy."
+  },
+  {
+    "engWord": "sad",
+    "turWord": "üzgün",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained sad."
+  },
+  {
+    "engWord": "big",
+    "turWord": "büyük",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn big at school."
+  },
+  {
+    "engWord": "small",
+    "turWord": "küçük",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "I use the word small every day."
+  },
+  {
+    "engWord": "fast",
+    "turWord": "hızlı",
+    "level": "A2",
+    "category": "adjective",
+    "exampleSentence": "My teacher explained fast."
+  },
+  {
+    "engWord": "slow",
+    "turWord": "yavaş",
+    "level": "B1",
+    "category": "adjective",
+    "exampleSentence": "We learn slow at school."
+  },
+  {
+    "engWord": "beautiful",
+    "turWord": "güzel",
+    "level": "A1",
+    "category": "adjective",
+    "exampleSentence": "We learn beautiful at school."
+  }
+]

@@ -1,6 +1,10 @@
 package com.app.wordlearn.data.local.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.app.wordlearn.data.local.entity.WordEntity
 
 @Dao
@@ -34,4 +38,10 @@ interface WordDao {
 
     @Delete
     suspend fun deleteWord(word: WordEntity)
+
+    @Query("SELECT wordId FROM words WHERE engWord = :engWord LIMIT 1")
+    suspend fun findIdByEng(engWord: String): Int?
+
+    @Query("DELETE FROM words WHERE source = 'user'")
+    suspend fun deleteAllUserWords()
 }

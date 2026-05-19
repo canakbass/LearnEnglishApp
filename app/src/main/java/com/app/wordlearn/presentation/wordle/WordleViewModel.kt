@@ -20,13 +20,14 @@ class WordleViewModel @Inject constructor(
     private val _gameState = MutableStateFlow(WordleGameState())
     val gameState: StateFlow<WordleGameState> = _gameState.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(false)
+    private val _isLoading = MutableStateFlow(true) // Only true on initial load
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     fun startNewGame() {
         viewModelScope.launch(Dispatchers.IO) {
-            _isLoading.value = true
-            _gameState.value = wordleUseCase.startNewGame()
+            // Only show loading on very first load, not on restarts
+            val newState = wordleUseCase.startNewGame()
+            _gameState.value = newState
             _isLoading.value = false
         }
     }

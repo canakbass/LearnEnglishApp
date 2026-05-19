@@ -13,4 +13,10 @@ interface WordSampleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSamples(samples: List<WordSampleEntity>)
+
+    @Query("SELECT * FROM word_samples")
+    suspend fun getAll(): List<WordSampleEntity>
+
+    @Query("DELETE FROM word_samples")
+    suspend fun deleteAll()
 }

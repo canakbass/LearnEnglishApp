@@ -4,5 +4,6 @@ data class QuizQuestion(
     val wordId: Int,
     val questionText: String,
     val correctAnswer: String,
-    val options: List<String>
+    val options: List<String>,
+    val picturePath: String? = null
 )

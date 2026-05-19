@@ -8,7 +8,9 @@ sealed class QuizUiState {
         val currentQuestion: QuizQuestion,
         val questionIndex: Int,
         val totalQuestions: Int,
-        val score: Int
+        val score: Int,
+        val actualQuestionNumber: Int = questionIndex + 1,
+        val dailyTotalQuestions: Int = totalQuestions
     ) : QuizUiState()
     data class Feedback(
         val isCorrect: Boolean,

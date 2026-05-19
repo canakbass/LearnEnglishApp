@@ -13,6 +13,10 @@ class SettingsRepositoryImpl @Inject constructor(
     private val settingsDao: SettingsDao
 ) : SettingsRepository {
 
+    // Bellek içi kilit: gün içinde ayar değişse bile quiz kotası değişmez.
+    private var lockedDailyCount: Int = -1
+    private var lockedDate: Long = 0L
+
     override suspend fun getSettings(): Settings {
         val entity = settingsDao.getSettings()
         return entity?.toDomain() ?: Settings().also {
@@ -44,4 +48,13 @@ class SettingsRepositoryImpl @Inject constructor(
 
     override suspend fun saveSettings(settings: Settings) =
         settingsDao.insertSettings(settings.toEntity())
+
+    override suspend fun getEffectiveDailyCount(startOfDay: Long): Int {
+        // Gün değiştiyse kilidi sıfırla
+        if (lockedDate != startOfDay || lockedDailyCount < 0) {
+            lockedDate = startOfDay
+            lockedDailyCount = getDailyNewWordCount()
+        }
+        return lockedDailyCount
+    }
 }

@@ -11,12 +11,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.app.wordlearn.presentation.theme.Error
 import com.app.wordlearn.presentation.theme.Success
+import java.io.File
 
 @Composable
 fun QuizScreen(viewModel: QuizViewModel) {
@@ -36,8 +39,6 @@ fun QuizScreen(viewModel: QuizViewModel) {
             is QuizUiState.Loading -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text("Quiz hazırlanıyor...")
                 }
             }
 
@@ -52,9 +53,14 @@ fun QuizScreen(viewModel: QuizViewModel) {
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            "Tüm kelimeleri tekrar ettiniz.",
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                            "Tüm kelimeleri tekrar ettiniz\nveya kelime havuzu boş.",
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                            modifier = Modifier.padding(top = 4.dp)
                         )
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Button(onClick = { viewModel.loadDailyQuiz() }) {
+                            Text("Tekrar Dene")
+                        }
                     }
                 }
             }
@@ -62,7 +68,7 @@ fun QuizScreen(viewModel: QuizViewModel) {
             is QuizUiState.QuizActive -> {
                 // İlerleme çubuğu
                 LinearProgressIndicator(
-                    progress = (state.questionIndex + 1f) / state.totalQuestions,
+                    progress = state.actualQuestionNumber.toFloat() / state.dailyTotalQuestions.toFloat(),
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primary,
                     trackColor = MaterialTheme.colorScheme.surfaceVariant
@@ -75,7 +81,7 @@ fun QuizScreen(viewModel: QuizViewModel) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        "Soru ${state.questionIndex + 1} / ${state.totalQuestions}",
+                        "Soru ${state.actualQuestionNumber} / ${state.dailyTotalQuestions}",
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -93,7 +99,7 @@ fun QuizScreen(viewModel: QuizViewModel) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant
                     ),
                     elevation = CardDefaults.cardElevation(4.dp)
                 ) {
@@ -103,13 +109,26 @@ fun QuizScreen(viewModel: QuizViewModel) {
                             .padding(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text("Bu kelimenin Türkçe karşılığı nedir?", fontSize = 14.sp)
+                        // Kelimeye ait resim varsa göster
+                        state.currentQuestion.picturePath?.let { path ->
+                            AsyncImage(
+                                model = File(path),
+                                contentDescription = state.currentQuestion.questionText,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(160.dp)
+                                    .clip(RoundedCornerShape(8.dp))
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                        }
+                        Text("Bu kelimenin Türkçe karşılığı nedir?", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             state.currentQuestion.questionText,
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }
@@ -160,7 +179,7 @@ fun QuizScreen(viewModel: QuizViewModel) {
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                if (state.isCorrect) "Doğru! ✓" else "Yanlış ✗",
+                                if (state.isCorrect) "Doğru" else "Yanlış",
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = if (state.isCorrect) Success else Error

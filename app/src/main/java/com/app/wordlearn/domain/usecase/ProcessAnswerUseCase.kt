@@ -5,16 +5,13 @@ import com.app.wordlearn.domain.model.QuizAnswer
 import com.app.wordlearn.domain.model.WordProgress
 import com.app.wordlearn.domain.repository.ProgressRepository
 import com.app.wordlearn.domain.repository.SessionRepository
+import com.app.wordlearn.domain.util.Constants
 import javax.inject.Inject
 
 class ProcessAnswerUseCase @Inject constructor(
     private val progressRepository: ProgressRepository,
     private val sessionRepository: SessionRepository
 ) {
-    companion object {
-        private const val STREAK_THRESHOLD = 6
-        private const val DAY_MS = 86_400_000L
-    }
 
     suspend fun execute(
         wordId: Int,
@@ -37,6 +34,30 @@ class ProcessAnswerUseCase @Inject constructor(
         }
 
         val now = System.currentTimeMillis()
+        val calendar = java.util.Calendar.getInstance()
+        calendar.timeInMillis = now
+        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0)
+        calendar.set(java.util.Calendar.MINUTE, 0)
+        calendar.set(java.util.Calendar.SECOND, 0)
+        calendar.set(java.util.Calendar.MILLISECOND, 0)
+        val startOfDay = calendar.timeInMillis
+
+        // Eğer kelime bugün zaten cevaplanmışsa, istatistikleri GÜNCELLEME (sadece oturum için kaydet)
+        if (currentProgress.lastAnsweredDate >= startOfDay) {
+            val answer = QuizAnswer(
+                sessionId = sessionId,
+                progressId = currentProgress.progressId,
+                isCorrect = isCorrect,
+                answeredAt = now
+            )
+            sessionRepository.saveAnswer(answer)
+            return AnswerResult(
+                isCorrect = isCorrect,
+                correctAnswer = correctAnswer,
+                newStreak = currentProgress.correctStreak,
+                newStage = currentProgress.reviewStage
+            )
+        }
 
         // 2-3. Doğru/yanlış cevap mantığı
         val updatedProgress = if (isCorrect) {
@@ -69,7 +90,7 @@ class ProcessAnswerUseCase @Inject constructor(
     private fun processCorrectAnswer(progress: WordProgress, now: Long): WordProgress {
         val newStreak = progress.correctStreak + 1
 
-        return if (newStreak >= STREAK_THRESHOLD) {
+        return if (newStreak >= Constants.STREAK_THRESHOLD) {
             // 6 doğru üst üste: stage atlat, streak sıfırla
             val newStage = progress.reviewStage + 1
             val isLearned = newStage >= 5
@@ -89,10 +110,13 @@ class ProcessAnswerUseCase @Inject constructor(
                 isLearned = isLearned
             )
         } else {
+            // Streak devam ediyor ama eşiğe ulaşmadı;
+            // nextReviewDate'i de güncelle ki aynı gün tekrar sorulmasın.
             progress.copy(
                 correctStreak = newStreak,
                 totalCorrect = progress.totalCorrect + 1,
                 totalAttempts = progress.totalAttempts + 1,
+                nextReviewDate = calculateNextReviewDate(progress.reviewStage, now),
                 lastAnsweredDate = now
             )
         }
@@ -104,7 +128,7 @@ class ProcessAnswerUseCase @Inject constructor(
             correctStreak = 0,
             reviewStage = 0,
             totalAttempts = progress.totalAttempts + 1,
-            nextReviewDate = now + DAY_MS,
+            nextReviewDate = now + Constants.DAY_IN_MS,
             lastAnsweredDate = now
         )
     }
@@ -118,6 +142,6 @@ class ProcessAnswerUseCase @Inject constructor(
             4 -> 180L
             else -> 365L
         }
-        return now + (daysToAdd * DAY_MS)
+        return now + (daysToAdd * Constants.DAY_IN_MS)
     }
 }
