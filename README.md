@@ -243,6 +243,29 @@ Mevcut testler `app/src/test/.../domain/usecase/`:
 > `C:\dev\` gibi ASCII bir klasöre taşı veya Android Studio'dan tek tek
 > test çalıştır. Kod compile temiz, sadece JVM file:// URL bug'ı engel.
 
+### Coverage Raporu (JaCoCo)
+
+Unit testler için kod kapsama raporu üretmek için:
+
+```bash
+./gradlew :app:jacocoTestReport
+```
+
+Çıktılar:
+- **XML** (SonarQube/SonarCloud için): `app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml`
+- **HTML** (tarayıcıdan açılır): `app/build/reports/jacoco/jacocoTestReport/html/index.html`
+
+SonarQube/SonarCloud taramasında coverage'ı görmek için:
+
+```bash
+./gradlew clean :app:jacocoTestReport
+sonar-scanner -Dsonar.token=$SONAR_TOKEN
+```
+
+Proje kökündeki `sonar-project.properties` zaten `sonar.coverage.jacoco.xmlReportPaths`
+ile rapor yolunu Sonar'a bildiriyor. Generated kod (Hilt, Compose, Room mappers vs.)
+coverage hesabından dışlanıyor — sayım gerçek iş kodumuzu yansıtır.
+
 ---
 
 ## Performans Notları

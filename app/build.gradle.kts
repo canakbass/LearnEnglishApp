@@ -8,6 +8,11 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("org.jetbrains.kotlin.plugin.serialization")
+    jacoco
+}
+
+jacoco {
+    toolVersion = "0.8.11"
 }
 
 // Read API key from local.properties
@@ -51,6 +56,8 @@ android {
         debug {
             // Debug build'inde minify kapalı — hızlı iterasyon için.
             isMinifyEnabled = false
+            // JaCoCo bytecode instrumentation için coverage data toplamayı aç.
+            enableUnitTestCoverage = true
         }
         release {
             isMinifyEnabled = true
@@ -148,4 +155,52 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+// =================================================================
+// JaCoCo unit-test coverage raporu — SonarQube'a `sonar.coverage.jacoco.xmlReportPaths`
+// üzerinden gönderilir. Komut:
+//   ./gradlew jacocoTestReport
+// XML çıktısı: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+// HTML çıktısı: app/build/reports/jacoco/jacocoTestReport/html/index.html
+// =================================================================
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest")
+    group = "verification"
+    description = "Unit testleri için coverage raporu üretir (XML + HTML)."
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(false)
+    }
+
+    // Generated / framework kodlarını ölç dışı tut — coverage gerçek iş kodumuzu yansıtsın.
+    val coverageExcludes = listOf(
+        // Android generated
+        "**/R.class", "**/R$*.class", "**/BuildConfig.*", "**/Manifest*.*",
+        "**/*Test*.*", "android/**/*.*",
+        // Hilt generated
+        "**/*_HiltModules*.*", "**/*_Factory*.*", "**/*_MembersInjector*.*",
+        "**/Hilt_*.*", "**/*_GeneratedInjector*.*", "**/DaggerHilt_*.*",
+        "**/hilt_aggregated_deps/**",
+        // Compose generated
+        "**/*ComposableSingletons*.*", "**/*\$\$inlined*.*",
+        // Serialization & KSP
+        "**/*\$serializer*.*", "**/*\$Companion*.*"
+    )
+
+    val kotlinTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
+        exclude(coverageExcludes)
+    }
+    val javaTree = fileTree("${layout.buildDirectory.get()}/intermediates/javac/debug/classes") {
+        exclude(coverageExcludes)
+    }
+
+    classDirectories.setFrom(files(kotlinTree, javaTree))
+    sourceDirectories.setFrom(files("src/main/java", "src/main/kotlin"))
+    executionData.setFrom(fileTree(layout.buildDirectory.get()).include(
+        "outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
+        "jacoco/testDebugUnitTest.exec"
+    ))
 }
