@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,12 +34,14 @@ fun LoginScreen(
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onLoginSuccess: () -> Unit,
-    onGuestLogin: (() -> Unit)? = null
+    onGuestLogin: () -> Unit = {}
 ) {
     val authState by authViewModel.authState.collectAsState()
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
+    // rememberSaveable: configuration change (rotate, dark mode toggle, vs.) sonrası
+    // kullanıcının yazdığı kullanıcı adı/şifre kaybolmasın. passwordVisible flag de korunsun.
+    var username by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     val context = LocalContext.current
 
@@ -228,13 +231,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             TextButton(
-                onClick = {
-                    if (onGuestLogin != null) {
-                        onGuestLogin()
-                    } else {
-                        authViewModel.loginAsGuest()
-                    }
-                },
+                onClick = onGuestLogin,
                 enabled = !authState.isLoading
             ) {
                 Text(
@@ -254,11 +251,11 @@ fun RegisterScreen(
     onRegisterSuccess: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
-    var username by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
+    var username by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var confirmPassword by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) onRegisterSuccess()

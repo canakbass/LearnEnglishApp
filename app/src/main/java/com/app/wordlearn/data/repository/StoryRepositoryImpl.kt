@@ -12,9 +12,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.net.HttpURLConnection
 import java.net.URL
 import javax.inject.Inject
 import javax.inject.Singleton
+
+private const val CONNECT_TIMEOUT_MS = 10_000
+private const val READ_TIMEOUT_MS = 30_000
 
 @Singleton
 class StoryRepositoryImpl @Inject constructor(
@@ -35,17 +39,28 @@ class StoryRepositoryImpl @Inject constructor(
 
             if (!imageUrl.isNullOrBlank()) {
                 try {
-                    // Download the image
+                    // Download the image with explicit timeouts.
+                    // URL.openStream() default timeout = INFINITY → server askıda kalırsa
+                    // coroutine sonsuza kadar takılır (SonarQube java:S5527 / S2092).
                     val timestamp = System.currentTimeMillis()
                     val fileName = "story_img_$timestamp.jpg"
                     val file = File(context.filesDir, fileName)
-                    
-                    URL(imageUrl).openStream().use { input ->
-                        FileOutputStream(file).use { output ->
-                            input.copyTo(output)
-                        }
+
+                    val connection = (URL(imageUrl).openConnection() as HttpURLConnection).apply {
+                        connectTimeout = CONNECT_TIMEOUT_MS
+                        readTimeout = READ_TIMEOUT_MS
+                        requestMethod = "GET"
                     }
-                    
+                    try {
+                        connection.inputStream.use { input ->
+                            FileOutputStream(file).use { output ->
+                                input.copyTo(output)
+                            }
+                        }
+                    } finally {
+                        connection.disconnect()
+                    }
+
                     finalImagePath = file.absolutePath
                     isLocal = true
                 } catch (e: Exception) {
