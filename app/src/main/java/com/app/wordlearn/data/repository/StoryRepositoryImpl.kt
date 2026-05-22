@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.net.HttpURLConnection
-import java.net.URL
+import java.net.URI
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -47,7 +47,9 @@ class StoryRepositoryImpl @Inject constructor(
                     val fileName = "story_img_$timestamp.jpg"
                     val file = File(context.filesDir, fileName)
 
-                    val connection = (URL(imageUrl).openConnection() as HttpURLConnection).apply {
+                    // URI.toURL() — `URL(String)` constructor Java 20+ deprecated; URI valide eder.
+                    val url = URI.create(imageUrl).toURL()
+                    val connection = (url.openConnection() as HttpURLConnection).apply {
                         connectTimeout = CONNECT_TIMEOUT_MS
                         readTimeout = READ_TIMEOUT_MS
                         requestMethod = "GET"
@@ -87,8 +89,8 @@ class StoryRepositoryImpl @Inject constructor(
             if (story.isLocalImage && story.imagePath != null) {
                 try {
                     val file = File(story.imagePath)
-                    if (file.exists()) {
-                        file.delete()
+                    if (file.exists() && !file.delete()) {
+                        CrashReporter.log(TAG, "Local story image silinemedi: ${story.imagePath}")
                     }
                 } catch (e: Exception) {
                     CrashReporter.reportException(TAG, "Local story image delete failed", e)

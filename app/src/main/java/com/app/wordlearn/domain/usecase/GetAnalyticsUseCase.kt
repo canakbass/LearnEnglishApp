@@ -20,7 +20,6 @@ class GetAnalyticsUseCase @Inject constructor(
         val allProgress = progressRepository.getAllProgress()
         val allWords = wordRepository.getAllWords()
         val allAnswers = sessionRepository.getAllAnswers()
-        val sessions = sessionRepository.getSessionHistory()
 
         // Kelime ID → Word map
         val wordMap = allWords.associateBy { it.wordId }

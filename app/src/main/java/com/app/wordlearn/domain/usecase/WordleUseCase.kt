@@ -75,7 +75,6 @@ class WordleUseCase @Inject constructor(
 
     fun checkGuess(guess: String, target: String): List<LetterResult> {
         val result = MutableList(5) { LetterResult.ABSENT }
-        val targetChars = target.toMutableList()
         val usedInTarget = BooleanArray(5)
 
         // İlk geçiş: doğru yerdeki harfler (CORRECT)

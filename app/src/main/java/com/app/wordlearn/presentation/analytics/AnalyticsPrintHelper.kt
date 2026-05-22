@@ -123,5 +123,5 @@ object AnalyticsPrintHelper {
     }
 
     private fun todayLabel(): String =
-        SimpleDateFormat("dd MMMM yyyy HH:mm", Locale("tr", "TR")).format(Date())
+        SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.forLanguageTag("tr-TR")).format(Date())
 }

@@ -126,13 +126,13 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Divider(modifier = Modifier.weight(1f))
+                HorizontalDivider(modifier = Modifier.weight(1f))
                 Text(
                     "  veya  ",
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     fontSize = 14.sp
                 )
-                Divider(modifier = Modifier.weight(1f))
+                HorizontalDivider(modifier = Modifier.weight(1f))
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -168,16 +168,9 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(4.dp))
             
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
-                TextButton(onClick = {
-                    if (username.isBlank() || !username.contains("@")) {
-                        // Kötü bir hack ama username kısmına e-posta girmesi gerekiyor
-                        // state update yapılamadığı için uyarı gösterilemeyebilir, 
-                        // en azından fonksiyon çağrılır ve ViewModel uyarı verir.
-                        authViewModel.resetPassword(username)
-                    } else {
-                        authViewModel.resetPassword(username)
-                    }
-                }) {
+                // resetPassword e-posta validasyonunu ViewModel'da yapar (boş/geçersiz e-posta
+                // için kendisi errorMessage set eder). Burada koşullu çağrı gereksizdi.
+                TextButton(onClick = { authViewModel.resetPassword(username) }) {
                     Text("Şifremi Unuttum", fontSize = 12.sp)
                 }
             }

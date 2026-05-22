@@ -1,14 +1,14 @@
 package com.app.wordlearn.data.repository
 
+import com.app.wordlearn.data.local.AppDatabase
 import com.app.wordlearn.domain.model.User
 import com.app.wordlearn.domain.repository.UserRepository
+import com.app.wordlearn.domain.util.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import com.app.wordlearn.data.local.AppDatabase
 
 @Singleton
 class UserRepositoryImpl @Inject constructor(
@@ -38,7 +38,7 @@ class UserRepositoryImpl @Inject constructor(
                     userId = firebaseUser.uid,
                     username = username,
                     email = email,
-                    level = "Başlangıç",
+                    level = Constants.USER_LEVEL_BEGINNER,
                     score = 0,
                     joinDate = System.currentTimeMillis()
                 )
@@ -76,7 +76,7 @@ class UserRepositoryImpl @Inject constructor(
                     userId = firebaseUser.uid,
                     username = firebaseUser.displayName ?: email.substringBefore("@"),
                     email = email,
-                    level = "Başlangıç",
+                    level = Constants.USER_LEVEL_BEGINNER,
                     score = 0,
                     joinDate = firebaseUser.metadata?.creationTimestamp ?: System.currentTimeMillis()
                 )
@@ -106,7 +106,7 @@ class UserRepositoryImpl @Inject constructor(
                     userId = firebaseUser.uid,
                     username = firebaseUser.displayName ?: "Kullanıcı",
                     email = firebaseUser.email,
-                    level = "Başlangıç",
+                    level = Constants.USER_LEVEL_BEGINNER,
                     score = 0,
                     joinDate = firebaseUser.metadata?.creationTimestamp ?: System.currentTimeMillis()
                 )
@@ -154,7 +154,7 @@ class UserRepositoryImpl @Inject constructor(
             userId = firebaseUser.uid,
             username = firebaseUser.displayName ?: "",
             email = firebaseUser.email,
-            level = "Başlangıç",
+            level = Constants.USER_LEVEL_BEGINNER,
             score = 0,
             joinDate = firebaseUser.metadata?.creationTimestamp ?: System.currentTimeMillis()
         )
@@ -169,7 +169,7 @@ class UserRepositoryImpl @Inject constructor(
                     userId = firebaseUser.uid,
                     username = "Misafir",
                     email = null,
-                    level = "Başlangıç",
+                    level = Constants.USER_LEVEL_BEGINNER,
                     score = 0,
                     joinDate = System.currentTimeMillis()
                 )

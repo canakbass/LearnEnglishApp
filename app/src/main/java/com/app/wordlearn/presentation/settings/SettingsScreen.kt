@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material3.*
@@ -20,6 +20,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+// Duplicate string literal'ları tek bir yerde tutalım (SonarQube S1192).
+private const val DELETE_ACCOUNT_LABEL = "Hesabı Sil"
+private const val LOGOUT_LABEL = "Çıkış Yap"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -117,7 +121,7 @@ fun SettingsScreen(
     if (showDeleteAccountDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteAccountDialog = false },
-            title = { Text("Hesabı Sil") },
+            title = { Text(DELETE_ACCOUNT_LABEL) },
             text = {
                 Text(
                     "Hesabınız kalıcı olarak silinecek. " +
@@ -129,7 +133,7 @@ fun SettingsScreen(
                 TextButton(onClick = {
                     showDeleteAccountDialog = false
                     onDeleteAccount()
-                }) { Text("Hesabı Sil", color = MaterialTheme.colorScheme.error) }
+                }) { Text(DELETE_ACCOUNT_LABEL, color = MaterialTheme.colorScheme.error) }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteAccountDialog = false }) { Text("İptal") }
@@ -140,13 +144,13 @@ fun SettingsScreen(
     if (showLogoutDialog) {
         AlertDialog(
             onDismissRequest = { showLogoutDialog = false },
-            title = { Text("Çıkış Yap") },
+            title = { Text(LOGOUT_LABEL) },
             text = { Text("Hesabınızdan çıkış yapmak istediğinize emin misiniz?") },
             confirmButton = {
                 TextButton(onClick = {
                     showLogoutDialog = false
                     onLogout()
-                }) { Text("Çıkış Yap", color = MaterialTheme.colorScheme.error) }
+                }) { Text(LOGOUT_LABEL, color = MaterialTheme.colorScheme.error) }
             },
             dismissButton = {
                 TextButton(onClick = { showLogoutDialog = false }) { Text("İptal") }
@@ -233,9 +237,9 @@ fun SettingsScreen(
                     contentColor = MaterialTheme.colorScheme.error
                 )
             ) {
-                Icon(Icons.Default.ExitToApp, contentDescription = "Çıkış", modifier = Modifier.size(20.dp))
+                Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Çıkış", modifier = Modifier.size(20.dp))
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Çıkış Yap", fontSize = 16.sp)
+                Text(LOGOUT_LABEL, fontSize = 16.sp)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -406,7 +410,7 @@ private fun AccountManagementCard(
                 ) {
                     Icon(Icons.Default.Delete, null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Hesabı Sil")
+                    Text(DELETE_ACCOUNT_LABEL)
                 }
             }
         }

@@ -201,51 +201,64 @@ class BackupRepository @Inject constructor(
             val output = context.contentResolver.openOutputStream(destination, "w")
                 ?: error("Çıktı dosyası açılamadı")
 
-            var imagesWritten = 0
-            var imagesSkipped = 0
-            ZipOutputStream(output.buffered()).use { zip ->
-                // data.json
-                zip.putNextEntry(ZipEntry(DATA_JSON))
-                zip.write(json.encodeToString(backup).toByteArray(Charsets.UTF_8))
-                zip.closeEntry()
-
-                // images/
-                userWords.forEach { w ->
-                    val path = w.picturePath ?: return@forEach
-                    val filename = pictureMap[w.wordId] ?: return@forEach
-                    val input = resolveExistingInput(path)
-                    if (input == null) {
-                        imagesSkipped++
-                        CrashReporter.log(TAG, "Export: word ${w.wordId} '$path' okunamadı, atlandı")
-                        return@forEach
-                    }
-                    input.use {
-                        zip.putNextEntry(ZipEntry("$IMAGES_DIR/$filename"))
-                        it.copyTo(zip)
-                        zip.closeEntry()
-                        imagesWritten++
-                    }
-                }
-                allStories.forEach { s ->
-                    if (!s.isLocalImage) return@forEach
-                    val path = s.imagePath ?: return@forEach
-                    val filename = storyImageMap[s.storyId] ?: return@forEach
-                    resolveExistingInput(path)?.use { input ->
-                        zip.putNextEntry(ZipEntry("$IMAGES_DIR/$filename"))
-                        input.copyTo(zip)
-                        zip.closeEntry()
-                        imagesWritten++
-                    }
-                }
+            val imgStats = ZipOutputStream(output.buffered()).use { zip ->
+                writeJsonEntry(zip, backup)
+                writeImageEntries(zip, userWords, pictureMap, allStories, storyImageMap)
             }
             CrashReporter.log(
                 TAG,
-                "Export done: words=${backup.userWords.size} imagesWritten=$imagesWritten imagesSkipped=$imagesSkipped"
+                "Export done: words=${backup.userWords.size} " +
+                    "imagesWritten=${imgStats.written} imagesSkipped=${imgStats.skipped}"
             )
 
             backup.userWords.size
         }.onFailure { CrashReporter.reportException(TAG, "Export failed", it) }
     }
+
+    private fun writeJsonEntry(zip: ZipOutputStream, backup: BackupData) {
+        zip.putNextEntry(ZipEntry(DATA_JSON))
+        zip.write(json.encodeToString(backup).toByteArray(Charsets.UTF_8))
+        zip.closeEntry()
+    }
+
+    /** Hem user word hem story resimlerini ZIP'e yazar; (yazılan, atlanan) sayar. */
+    private fun writeImageEntries(
+        zip: ZipOutputStream,
+        userWords: List<WordEntity>,
+        pictureMap: Map<Int, String>,
+        allStories: List<StoryEntity>,
+        storyImageMap: Map<Long, String>
+    ): ImageWriteStats {
+        var written = 0
+        var skipped = 0
+        userWords.forEach { w ->
+            val path = w.picturePath ?: return@forEach
+            val filename = pictureMap[w.wordId] ?: return@forEach
+            if (copyToZipEntry(zip, path, filename)) written++ else {
+                skipped++
+                CrashReporter.log(TAG, "Export: word ${w.wordId} '$path' okunamadı, atlandı")
+            }
+        }
+        allStories.forEach { s ->
+            if (!s.isLocalImage) return@forEach
+            val path = s.imagePath ?: return@forEach
+            val filename = storyImageMap[s.storyId] ?: return@forEach
+            if (copyToZipEntry(zip, path, filename)) written++
+        }
+        return ImageWriteStats(written, skipped)
+    }
+
+    private fun copyToZipEntry(zip: ZipOutputStream, srcPath: String, zipFilename: String): Boolean {
+        val input = resolveExistingInput(srcPath) ?: return false
+        input.use {
+            zip.putNextEntry(ZipEntry("$IMAGES_DIR/$zipFilename"))
+            it.copyTo(zip)
+            zip.closeEntry()
+        }
+        return true
+    }
+
+    private data class ImageWriteStats(val written: Int, val skipped: Int)
 
     /** Restore istatistikleri — UI'ya geri bildirim için. */
     data class ImportStats(
@@ -259,64 +272,114 @@ class BackupRepository @Inject constructor(
     /** Verilen Uri'den ZIP'i okur, mevcut kullanıcı verisini değiştirir. */
     suspend fun importFrom(source: Uri): Result<ImportStats> = withContext(Dispatchers.IO) {
         runCatching {
-            // 1. ZIP'i geçici bir klasöre aç.
-            val extractDir = File(context.cacheDir, "restore_${System.currentTimeMillis()}").apply { mkdirs() }
-            var backup: BackupData? = null
-            context.contentResolver.openInputStream(source)?.use { input ->
-                ZipInputStream(input.buffered()).use { zip ->
-                    var entry = zip.nextEntry
-                    while (entry != null) {
-                        if (entry.name == DATA_JSON) {
-                            val text = zip.readBytes().toString(Charsets.UTF_8)
-                            backup = json.decodeFromString<BackupData>(text)
-                        } else if (entry.name.startsWith("$IMAGES_DIR/") && !entry.isDirectory) {
-                            val outFile = File(extractDir, entry.name.removePrefix("$IMAGES_DIR/"))
-                            outFile.parentFile?.mkdirs()
-                            FileOutputStream(outFile).use { out -> zip.copyTo(out) }
-                        }
-                        zip.closeEntry()
-                        entry = zip.nextEntry
-                    }
-                }
-            } ?: error("Yedek dosyası açılamadı")
-
-            val data = backup ?: error("Yedek dosyasında data.json bulunamadı")
+            // 1) ZIP'i geçici klasöre aç → BackupData + (filename → tempFile) map
+            val extracted = extractBackupZip(source)
+            val data = extracted.data
             require(data.schemaVersion == BackupData.SCHEMA_VERSION) {
                 "Bu yedek sürümü (${data.schemaVersion}) desteklenmiyor"
             }
 
-            // 2. Resimleri kalıcı klasöre taşı.
-            val imagesDir = File(context.filesDir, "user_images").apply { mkdirs() }
-            val extractedImages = extractDir.listFiles().orEmpty().filter { it.isFile }
-            var imagesCopied = 0
-            var imagesFailed = 0
-            val imagePathMap: Map<String, String> = extractedImages.mapNotNull { f ->
-                runCatching {
-                    val dest = File(imagesDir, "${System.currentTimeMillis()}_${f.name}")
-                    f.copyTo(dest, overwrite = true)
-                    if (dest.length() <= 0L) error("0 byte dest file")
-                    imagesCopied++
-                    f.name to dest.absolutePath
-                }.onFailure {
-                    imagesFailed++
-                    CrashReporter.log(TAG, "Image kopyalama hatası ${f.name}: ${it.message}")
-                }.getOrNull()
-            }.toMap()
-            extractDir.deleteRecursively()
+            // 2) Resimleri kalıcı user_images klasörüne taşı
+            val imagePathMap = persistExtractedImages(extracted.extractDir)
+
+            // 3) Transaction içinde DB'yi yeniden inşa et
+            val restore = applyRestoreTransaction(data, imagePathMap)
+
+            settingsRepository.invalidateDailyCountCache()
+
+            val stats = ImportStats(
+                wordCount = data.userWords.size,
+                progressRestored = restore.progressRestored,
+                progressDropped = restore.progressDropped,
+                answersRestored = restore.answersRestored,
+                answersDropped = restore.answersDropped
+            )
             CrashReporter.log(
                 TAG,
-                "Extracted images: ${extractedImages.size}, copied=$imagesCopied, failed=$imagesFailed"
+                "Import done: deletedUserWords=${restore.deletedUserWords} " +
+                    "newUserWords=${stats.wordCount} progress=${stats.progressRestored} " +
+                    "(dropped=${stats.progressDropped}) answers=${stats.answersRestored} " +
+                    "(dropped=${stats.answersDropped})"
             )
+            stats
+        }.onFailure { CrashReporter.reportException(TAG, "Import failed", it) }
+    }
 
-            // İstatistik sayaçları — UI'ya geri dönecek.
-            var progressRestored = 0
-            var progressDropped = 0
-            var answersRestored = 0
-            var answersDropped = 0
-            var deletedUserWords = 0
+    /** ZIP'i cache'e aç; data.json'u parse et, görselleri geçici dizine yaz. */
+    private fun extractBackupZip(source: Uri): ExtractedBackup {
+        val extractDir = File(context.cacheDir, "restore_${System.currentTimeMillis()}").apply { mkdirs() }
+        var backup: BackupData? = null
+        context.contentResolver.openInputStream(source)?.use { input ->
+            ZipInputStream(input.buffered()).use { zip ->
+                generateSequence { zip.nextEntry }.forEach { entry ->
+                    backup = readEntry(zip, entry, extractDir) ?: backup
+                    zip.closeEntry()
+                }
+            }
+        } ?: error("Yedek dosyası açılamadı")
+        val data = backup ?: error("Yedek dosyasında data.json bulunamadı")
+        return ExtractedBackup(data, extractDir)
+    }
 
-            // 3. Transaction içinde yeniden inşa et.
-            appDatabase.withTransaction {
+    /** Tek bir zip entry'yi işler; data.json ise parse'lı sonuç döner, yoksa null. */
+    private fun readEntry(zip: ZipInputStream, entry: ZipEntry, extractDir: File): BackupData? {
+        if (entry.name == DATA_JSON) {
+            val text = zip.readBytes().toString(Charsets.UTF_8)
+            return json.decodeFromString<BackupData>(text)
+        }
+        if (entry.name.startsWith("$IMAGES_DIR/") && !entry.isDirectory) {
+            val outFile = File(extractDir, entry.name.removePrefix("$IMAGES_DIR/"))
+            outFile.parentFile?.mkdirs()
+            FileOutputStream(outFile).use { out -> zip.copyTo(out) }
+        }
+        return null
+    }
+
+    /** Geçici klasördeki resimleri user_images'a kopyalar. (zipFileName → kalıcı path) */
+    private fun persistExtractedImages(extractDir: File): Map<String, String> {
+        val imagesDir = File(context.filesDir, "user_images").apply { mkdirs() }
+        val extractedImages = extractDir.listFiles().orEmpty().filter { it.isFile }
+        var copied = 0
+        var failed = 0
+        val map: Map<String, String> = extractedImages.mapNotNull { f ->
+            runCatching {
+                val dest = File(imagesDir, "${System.currentTimeMillis()}_${f.name}")
+                f.copyTo(dest, overwrite = true)
+                if (dest.length() <= 0L) error("0 byte dest file")
+                copied++
+                f.name to dest.absolutePath
+            }.onFailure {
+                failed++
+                CrashReporter.log(TAG, "Image kopyalama hatası ${f.name}: ${it.message}")
+            }.getOrNull()
+        }.toMap()
+        extractDir.deleteRecursively()
+        CrashReporter.log(TAG, "Extracted images: ${extractedImages.size}, copied=$copied, failed=$failed")
+        return map
+    }
+
+    private data class ExtractedBackup(val data: BackupData, val extractDir: File)
+
+    private data class RestoreCounts(
+        val deletedUserWords: Int,
+        val progressRestored: Int,
+        val progressDropped: Int,
+        val answersRestored: Int,
+        val answersDropped: Int
+    )
+
+    /** Tüm restore işlemini tek transaction içinde yapar, sayım döner. */
+    private suspend fun applyRestoreTransaction(
+        data: BackupData,
+        imagePathMap: Map<String, String>
+    ): RestoreCounts {
+        var progressRestored = 0
+        var progressDropped = 0
+        var answersRestored = 0
+        var answersDropped = 0
+        var deletedUserWords = 0
+
+        appDatabase.withTransaction {
                 // Mevcut UID'yi delete öncesi cache'le — restore sonrası hesap eşleşmesini korur.
                 val preservedUid = settingsDao.getSettings()?.firebaseUid.orEmpty()
 
@@ -467,27 +530,15 @@ class BackupRepository @Inject constructor(
                     )
                 }
                 if (storyEntities.isNotEmpty()) storyDao.insertAll(storyEntities)
-            }
+            }   // withTransaction kapanışı
 
-            // BUG #6 fix: SettingsRepository @Singleton'da gün içinde bellekteki kotayı tutuyor.
-            // Restore sonrası yedek dosyasından gelen dailyNewWordCount bir sonraki quiz'de devreye girsin.
-            settingsRepository.invalidateDailyCountCache()
-
-            val stats = ImportStats(
-                wordCount = data.userWords.size,
-                progressRestored = progressRestored,
-                progressDropped = progressDropped,
-                answersRestored = answersRestored,
-                answersDropped = answersDropped
-            )
-            CrashReporter.log(
-                TAG,
-                "Import done: deletedUserWords=$deletedUserWords " +
-                    "newUserWords=${stats.wordCount} progress=$progressRestored " +
-                    "(dropped=$progressDropped) answers=$answersRestored (dropped=$answersDropped)"
-            )
-            stats
-        }.onFailure { CrashReporter.reportException(TAG, "Import failed", it) }
+        return RestoreCounts(
+            deletedUserWords = deletedUserWords,
+            progressRestored = progressRestored,
+            progressDropped = progressDropped,
+            answersRestored = answersRestored,
+            answersDropped = answersDropped
+        )
     }
 
     // ---------- helpers ----------
