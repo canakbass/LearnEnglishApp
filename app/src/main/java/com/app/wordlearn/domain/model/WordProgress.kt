@@ -9,5 +9,6 @@ data class WordProgress(
     val totalAttempts: Int = 0,
     val nextReviewDate: Long = System.currentTimeMillis(),
     val lastAnsweredDate: Long = 0L,
-    val isLearned: Boolean = false
+    val isLearned: Boolean = false,
+    val lastShownDate: Long = 0L
 )

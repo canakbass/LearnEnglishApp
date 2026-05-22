@@ -243,6 +243,18 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    fun handleGoogleSignInError(statusCode: Int) {
+        val message = when (statusCode) {
+            10 -> "Google yapılandırma hatası. Firebase konsolunda SHA-1 parmak izi ve Google oturum açmayı etkinleştirdiğinizden emin olun."
+            7 -> "Ağ hatası. İnternet bağlantınızı kontrol edin."
+            else -> "Google ile giriş başarısız (hata kodu: $statusCode)"
+        }
+        _authState.value = _authState.value.copy(
+            isLoading = false,
+            errorMessage = message
+        )
+    }
+
     fun resetPassword(email: String) {
         if (email.isBlank()) {
             _authState.value = _authState.value.copy(

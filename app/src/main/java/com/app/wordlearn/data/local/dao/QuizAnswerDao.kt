@@ -14,6 +14,9 @@ interface QuizAnswerDao {
     @Query("SELECT * FROM quiz_answers")
     suspend fun getAllAnswers(): List<QuizAnswerEntity>
 
+    @Query("SELECT COUNT(*) FROM quiz_answers WHERE answeredAt >= :startOfDay AND isCorrect = 1")
+    suspend fun getTodayCorrectCount(startOfDay: Long): Int
+
     @Query("DELETE FROM quiz_answers")
     suspend fun deleteAll()
 

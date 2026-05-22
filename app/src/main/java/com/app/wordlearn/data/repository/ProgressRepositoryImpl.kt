@@ -19,8 +19,14 @@ class ProgressRepositoryImpl @Inject constructor(
     override suspend fun getDueWords(today: Long, startOfDay: Long): List<WordProgress> =
         wordProgressDao.getDueWords(today, startOfDay).map { it.toDomain() }
 
-    override suspend fun getNewWords(count: Int): List<WordProgress> =
-        wordProgressDao.getNewWords(count).map { it.toDomain() }
+    override suspend fun getNewWords(count: Int, startOfDay: Long): List<WordProgress> =
+        wordProgressDao.getNewWords(count, startOfDay).map { it.toDomain() }
+
+    override suspend fun getPendingNewWords(startOfDay: Long): List<WordProgress> =
+        wordProgressDao.getPendingNewWords(startOfDay).map { it.toDomain() }
+
+    override suspend fun getPendingDueWords(startOfDay: Long): List<WordProgress> =
+        wordProgressDao.getPendingDueWords(startOfDay).map { it.toDomain() }
 
     override suspend fun updateProgress(progress: WordProgress) =
         wordProgressDao.updateProgress(progress.toEntity())

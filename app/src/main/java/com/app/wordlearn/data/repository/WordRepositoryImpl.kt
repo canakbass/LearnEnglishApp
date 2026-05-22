@@ -45,4 +45,8 @@ class WordRepositoryImpl @Inject constructor(
 
     override suspend fun getRandomWords(count: Int, excludeId: Int): List<Word> =
         wordDao.getRandomWords(count, excludeId).map { it.toDomain() }
+
+    override suspend fun deleteUserWord(wordId: Int) {
+        wordDao.deleteUserWordById(wordId)
+    }
 }

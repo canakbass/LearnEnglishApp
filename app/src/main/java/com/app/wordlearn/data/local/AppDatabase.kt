@@ -28,8 +28,8 @@ import com.app.wordlearn.data.local.entity.StoryEntity
         SettingsEntity::class,
         StoryEntity::class
     ],
-    // v4: UserEntity/UserDao kaldırıldı (kullanılmıyordu, kimlik Firebase'de tutuluyor)
-    version = 4,
+    // v5: word_progress tablosuna lastShownDate sütunu eklendi (quiz devam mantığı)
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -45,12 +45,20 @@ abstract class AppDatabase : RoomDatabase() {
      * Kullanıcıya özgü tüm tabloları tek bir transaction içinde temizler.
      * DAO katmanı üzerinden çalışır → Room invalidation tracker tetiklenir,
      * dinleyen Flow'lar güncel verisi yansıtır.
+     *
+     * Logout / hesap silme sonrası çağrılır. Sistem kelimeleri (source = "system")
+     * korunur; sadece kullanıcının eklediği kelimeler ve onlara bağlı tüm veriler silinir.
      */
     suspend fun clearUserData() = withTransaction {
-        wordProgressDao().deleteAll()
-        quizSessionDao().deleteAll()
+        // Sıra önemli: child tabloları önce sil (FK constraint güvenliği için).
         quizAnswerDao().deleteAll()
-        settingsDao().deleteAll()
+        quizSessionDao().deleteAll()
+        wordProgressDao().deleteAll()
+        wordSampleDao().deleteAll()
         storyDao().clearAllStories()
+        settingsDao().deleteAll()
+        // User kelimeleri en sonda — CASCADE'in bağımlı kayıtları silmesi için
+        // diğer tablolar zaten boşaltıldı.
+        wordDao().deleteAllUserWords()
     }
 }

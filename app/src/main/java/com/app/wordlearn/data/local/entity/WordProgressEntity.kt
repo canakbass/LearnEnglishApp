@@ -26,8 +26,10 @@ data class WordProgressEntity(
     val reviewStage: Int = 0,
     val totalCorrect: Int = 0,
     val totalAttempts: Int = 0,
-    // 0 = hiç görünmemiş yeni kelime (getDueWords: totalAttempts > 0 şartı ile korunuyor)
     val nextReviewDate: Long = 0L,
     val lastAnsweredDate: Long = 0L,
-    val isLearned: Int = 0
+    val isLearned: Int = 0,
+    // Kelimenin bugünkü quiz oturumuna eklendiği zaman damgası.
+    // ProcessAnswerUseCase'i etkilemez; yalnızca devam mantığı için kullanılır.
+    val lastShownDate: Long = 0L
 )

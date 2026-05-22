@@ -16,4 +16,11 @@ interface SettingsRepository {
      * Böylece kullanıcı gün içinde ayarı değiştirirse sadece yarına etki eder.
      */
     suspend fun getEffectiveDailyCount(startOfDay: Long): Int
+
+    /**
+     * Bellekteki günlük kota kilidini sıfırlar.
+     * Restore sonrası çağrılır — yedek dosyasından gelen dailyNewWordCount
+     * bir sonraki quizde devreye girsin.
+     */
+    fun invalidateDailyCountCache()
 }

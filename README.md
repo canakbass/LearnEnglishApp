@@ -41,6 +41,14 @@ uygulama tam çalışır.
   Gün içinde çıkıp tekrar girersen kaldığın yerden devam eder; aynı soru iki
   kez sorulmaz. Günlük kelime sayısı değişikliği sadece ertesi günden itibaren
   geçerli olur.
+- **Spaced Repetition Algoritması** — 6 doğru üst üste bir stage atlatır; her
+  stage farklı aralıkta tekrar getirir (1 gün → 7 → 30 → 90 → 180 → öğrenildi).
+  Yanlış cevap stage'i sıfırlar, ertesi gün tekrar sorar.
+- **Tekrar Oturumu** — Günlük kotanı doldurduktan sonra tekrar girersen
+  bugünkü kelimeler karışık sırayla pratik için tekrar gelir. Bu oturumda
+  istatistiklerin değişmez — algoritmaya kısa süreli ezber sızmaz.
+- **Quiz'de örnek cümle** — Her kelime için kayıtlı örnek cümleler quiz
+  ekranında küçük italic fontla altında görünür.
 - **Wordle** — 5 harfli kelime tahmin oyunu. Eğlenceli pratik.
 - **Word Chain (Hikaye Üretici)** — Birkaç kelimeden Gemini AI'la kısa hikayeler
   üretir; istersen kaydedip sonradan tekrar okuyabilirsin. _(İsteğe bağlı,
@@ -48,6 +56,11 @@ uygulama tam çalışır.
 - **Kelime Listesi** — Sistemde 1000+ İngilizce-Türkçe kelime; üzerine kendi
   kelimelerini, örnek cümlelerini ve isteğe bağlı **resimlerini** ekleyebilirsin.
   Resimler hem kelime listesinde hem quiz sırasında gösterilir.
+  - **İki sekme:** "Öğrenilmemiş" (hiç başlanmamış) ve "Öğreniyorum"
+    (başladığın veya tamamen öğrendiğin) kelimeler ayrı görünür. Sağ sekmede
+    her kelimenin aşama rozeti (🌱 Başladım, 🌿 Aşama 2, … ✓ Öğrenildi).
+  - **Kendi kelimelerini silebilirsin** — kart üzerinde kırmızı silme ikonu
+    yalnızca kullanıcı kelimelerinde görünür; sistem kelimeleri korunur.
 - **Sesli Okuma (TTS)** — Cihazın yerel ses motoruyla telaffuz; harici servis
   yok.
 
@@ -184,7 +197,7 @@ com.app.wordlearn
 
 ## Veri Modeli
 
-Şu anda Room v4 şemasında 7 tablo var:
+Şu anda Room v5 şemasında 7 tablo var:
 
 | Tablo | İçerik |
 | --- | --- |
@@ -200,10 +213,12 @@ Sistem kelimeleri ilk açılışta `assets/system_words_seed.json` dosyasından
 seed edilir (~1000 kelime, A1–C1 seviyelerde). Kullanıcı verisinde değişiklik
 yapan tüm yollar suspend ve Room'un `withTransaction` API'siyle korunur.
 
-Migration'lar `data/local/Migrations.kt` içinde. Mevcut migration:
+Migration'lar `data/local/Migrations.kt` içinde. Mevcut migration'lar:
 
 - `MIGRATION_3_4`: `users` tablosu kaldırıldı (kimlik Firebase'de tutuluyor,
   yerel `UserEntity` ölü kod halindeydi).
+- `MIGRATION_4_5`: `word_progress` tablosuna `lastShownDate` eklendi —
+  quiz devam mantığı (bugün gösterilmiş ama cevaplanmamış kelimeler) için.
 
 ---
 
@@ -214,10 +229,19 @@ Migration'lar `data/local/Migrations.kt` içinde. Mevcut migration:
 ```
 
 Mevcut testler `app/src/test/.../domain/usecase/`:
-- `BuildDailyQuizUseCaseTest`
-- `ProcessAnswerUseCaseTest`
-- `SyncWordsUseCaseTest`
-- `WordleUseCaseTest`
+- `BuildDailyQuizUseCaseTest` — 20 white-box test: quiz havuzu seçimi,
+  rank sıralaması, practice mode, restore sonrası progress kullanımı,
+  spaced repetition due hesaplaması, distinct garantisi
+- `ProcessAnswerUseCaseTest` — 14 test: stage geçişleri (0→1→2→3→4→5),
+  streak biriktirme, yanlış cevap stage sıfırlama, duplicate answer
+  defansif return, totalCorrect/totalAttempts artışı
+- `SyncWordsUseCaseTest`, `WordleUseCaseTest` — eski testler
+
+> **Windows + Türkçe path notu:** Eğer proje Türkçe karakter içeren bir yolda
+> (`yazılım yapımı` gibi) duruyorsa Gradle test runner classpath URL'sini
+> hatalı çözümler ve `ClassNotFoundException` atar. Bu durumda projeyi
+> `C:\dev\` gibi ASCII bir klasöre taşı veya Android Studio'dan tek tek
+> test çalıştır. Kod compile temiz, sadece JVM file:// URL bug'ı engel.
 
 ---
 

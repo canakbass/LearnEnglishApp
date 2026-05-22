@@ -1,5 +1,6 @@
 package com.app.wordlearn.domain.usecase
 
+import android.util.Log
 import com.app.wordlearn.domain.model.AnswerResult
 import com.app.wordlearn.domain.model.QuizAnswer
 import com.app.wordlearn.domain.model.WordProgress
@@ -23,7 +24,6 @@ class ProcessAnswerUseCase @Inject constructor(
 
         // 1. Mevcut ilerlemeyi al
         var currentProgress = progressRepository.getProgress(wordId)
-        val isNewProgress = currentProgress == null
 
         if (currentProgress == null) {
             // Yeni progress kaydı oluştur
@@ -42,15 +42,16 @@ class ProcessAnswerUseCase @Inject constructor(
         calendar.set(java.util.Calendar.MILLISECOND, 0)
         val startOfDay = calendar.timeInMillis
 
-        // Eğer kelime bugün zaten cevaplanmışsa, istatistikleri GÜNCELLEME (sadece oturum için kaydet)
+        // Kelime bugün zaten cevaplanmışsa hiçbir şey kaydetme:
+        // istatistik bozulmaz, score çift sayılmaz, oturum sayacında duplicate olmaz.
+        // BuildDailyQuizUseCase'in tek-liste seçim mantığı bu durumu engellemeli;
+        // tetiklenirse BuildDailyQuiz'de bug var demektir — log uyarısı bırak.
         if (currentProgress.lastAnsweredDate >= startOfDay) {
-            val answer = QuizAnswer(
-                sessionId = sessionId,
-                progressId = currentProgress.progressId,
-                isCorrect = isCorrect,
-                answeredAt = now
+            Log.w(
+                TAG,
+                "Duplicate answer for wordId=$wordId (lastAnsweredDate=${currentProgress.lastAnsweredDate}, " +
+                    "startOfDay=$startOfDay). BuildDailyQuiz aynı kelimeyi iki kez sormuş olabilir."
             )
-            sessionRepository.saveAnswer(answer)
             return AnswerResult(
                 isCorrect = isCorrect,
                 correctAnswer = correctAnswer,
@@ -143,5 +144,9 @@ class ProcessAnswerUseCase @Inject constructor(
             else -> 365L
         }
         return now + (daysToAdd * Constants.DAY_IN_MS)
+    }
+
+    companion object {
+        private const val TAG = "ProcessAnswer"
     }
 }

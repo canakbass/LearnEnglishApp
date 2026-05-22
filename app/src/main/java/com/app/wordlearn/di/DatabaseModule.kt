@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.app.wordlearn.data.local.AppDatabase
 import com.app.wordlearn.data.local.MIGRATION_3_4
+import com.app.wordlearn.data.local.MIGRATION_4_5
 import com.app.wordlearn.data.local.dao.QuizAnswerDao
 import com.app.wordlearn.data.local.dao.QuizSessionDao
 import com.app.wordlearn.data.local.dao.SettingsDao
@@ -29,7 +30,7 @@ object DatabaseModule {
             AppDatabase::class.java,
             Constants.DATABASE_NAME
         )
-            .addMigrations(MIGRATION_3_4)
+            .addMigrations(MIGRATION_3_4, MIGRATION_4_5)
             .build()
     }
 

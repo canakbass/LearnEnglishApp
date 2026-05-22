@@ -20,7 +20,14 @@ sealed class BackupUiEvent {
     data object InProgress : BackupUiEvent()
     data class ExportSuccess(val wordCount: Int) : BackupUiEvent()
     /** Import başarılı — [needsRestart] true ise Activity yeniden başlatılmalı. */
-    data class ImportSuccess(val wordCount: Int, val needsRestart: Boolean = true) : BackupUiEvent()
+    data class ImportSuccess(
+        val wordCount: Int,
+        val progressRestored: Int,
+        val progressDropped: Int,
+        val answersRestored: Int,
+        val answersDropped: Int,
+        val needsRestart: Boolean = true
+    ) : BackupUiEvent()
     data class Error(val message: String) : BackupUiEvent()
 }
 
@@ -80,8 +87,14 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             _backupEvent.value = BackupUiEvent.InProgress
             backupRepository.importFrom(uri)
-                .onSuccess {
-                    _backupEvent.value = BackupUiEvent.ImportSuccess(it)
+                .onSuccess { stats ->
+                    _backupEvent.value = BackupUiEvent.ImportSuccess(
+                        wordCount = stats.wordCount,
+                        progressRestored = stats.progressRestored,
+                        progressDropped = stats.progressDropped,
+                        answersRestored = stats.answersRestored,
+                        answersDropped = stats.answersDropped
+                    )
                     // Ayarlar restore edilmiş olabilir — bellekteki kopyayı tazele.
                     loadSettings()
                 }

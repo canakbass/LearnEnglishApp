@@ -11,4 +11,5 @@ interface SessionRepository {
     suspend fun updateSession(session: QuizSession)
     suspend fun getAnswersBySessionId(sessionId: Int): List<QuizAnswer>
     suspend fun getAllAnswers(): List<QuizAnswer>
+    suspend fun getTodayCorrectCount(startOfDay: Long): Int
 }

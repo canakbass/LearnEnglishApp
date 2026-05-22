@@ -66,6 +66,24 @@ fun QuizScreen(viewModel: QuizViewModel) {
             }
 
             is QuizUiState.QuizActive -> {
+                // Practice mod uyarısı — quota dolduğu için tekrar oturumu, istatistik değişmez.
+                if (state.isPracticeMode) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 8.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                        )
+                    ) {
+                        Text(
+                            text = "🔁 Tekrar oturumu — bugünkü kelimeleri karışık sırayla çalışıyorsun. İstatistiklerin değişmez.",
+                            fontSize = 12.sp,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                    }
+                }
                 // İlerleme çubuğu
                 LinearProgressIndicator(
                     progress = state.actualQuestionNumber.toFloat() / state.dailyTotalQuestions.toFloat(),
@@ -130,6 +148,19 @@ fun QuizScreen(viewModel: QuizViewModel) {
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
+                        // Örnek cümleler (varsa) — küçük italic font, kelimenin altında
+                        if (state.currentQuestion.sampleSentences.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(10.dp))
+                            state.currentQuestion.sampleSentences.take(3).forEach { sentence ->
+                                Text(
+                                    text = "\"$sentence\"",
+                                    fontSize = 12.sp,
+                                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
+                                    modifier = Modifier.padding(top = 2.dp)
+                                )
+                            }
+                        }
                     }
                 }
 

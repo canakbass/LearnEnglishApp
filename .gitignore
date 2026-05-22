@@ -38,3 +38,14 @@ local.properties
 # Keystore files
 *.jks
 *.keystore
+
+# Claude Code / agent tooling
+.claude/
+*.tmp
+restore_*/
+
+# Firebase service account / admin SDK private keys — SERVER-SIDE ADMIN YETKİSİ verir, ASLA commit etme
+*adminsdk*.json
+*-firebase-adminsdk-*.json
+serviceAccountKey.json
+

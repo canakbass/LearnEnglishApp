@@ -85,6 +85,9 @@ fun NavGraph() {
     // Auth state değişince doğru graph'a yönlendir (login → main, logout → auth).
     LaunchedEffect(authState.isLoggedIn) {
         val target = if (authState.isLoggedIn) Screen.GRAPH_MAIN else Screen.GRAPH_AUTH
+        // currentDestination null ise NavHost graph'ı henüz set etmemiş demektir
+        // (ör. activity.recreate() sonrası). startDestination zaten doğru yere yönlendirir.
+        if (navController.currentDestination == null) return@LaunchedEffect
         if (navController.currentDestination?.parent?.route != target) {
             navController.navigate(target) {
                 // Tüm back stack'i temizle — auth/main arası geri tuşuyla geçilemesin.

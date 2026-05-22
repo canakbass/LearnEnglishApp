@@ -46,13 +46,20 @@ fun LoginScreen(
     val googleSignInLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                authViewModel.handleGoogleSignInResult(account?.idToken)
-            } catch (e: ApiException) {
-                authViewModel.handleGoogleSignInResult(null)
+        // resultCode ne olursa olsun task'ı parse et:
+        // DEVELOPER_ERROR (kod 10) ve benzeri hatalar RESULT_CANCELED ile dönebilir.
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            if (account?.idToken != null) {
+                authViewModel.handleGoogleSignInResult(account.idToken)
+            } else {
+                authViewModel.handleGoogleSignInError(10)
+            }
+        } catch (e: ApiException) {
+            // 12501 = kullanıcının kendi isteğiyle kapattığı picker → sessiz geç
+            if (e.statusCode != 12501) {
+                authViewModel.handleGoogleSignInError(e.statusCode)
             }
         }
     }

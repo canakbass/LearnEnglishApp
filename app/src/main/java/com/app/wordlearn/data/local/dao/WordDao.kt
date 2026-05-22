@@ -43,5 +43,9 @@ interface WordDao {
     suspend fun findIdByEng(engWord: String): Int?
 
     @Query("DELETE FROM words WHERE source = 'user'")
-    suspend fun deleteAllUserWords()
+    suspend fun deleteAllUserWords(): Int
+
+    /** Tek bir user word'ü siler. Sistem kelimelerine dokunmaz. */
+    @Query("DELETE FROM words WHERE wordId = :wordId AND source = 'user'")
+    suspend fun deleteUserWordById(wordId: Int): Int
 }

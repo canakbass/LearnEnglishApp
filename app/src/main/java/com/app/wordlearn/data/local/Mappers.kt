@@ -51,7 +51,8 @@ fun WordProgressEntity.toDomain() = WordProgress(
     totalAttempts = totalAttempts,
     nextReviewDate = nextReviewDate,
     lastAnsweredDate = lastAnsweredDate,
-    isLearned = isLearned == 1
+    isLearned = isLearned == 1,
+    lastShownDate = lastShownDate
 )
 
 fun WordProgress.toEntity() = WordProgressEntity(
@@ -63,7 +64,8 @@ fun WordProgress.toEntity() = WordProgressEntity(
     totalAttempts = totalAttempts,
     nextReviewDate = nextReviewDate,
     lastAnsweredDate = lastAnsweredDate,
-    isLearned = if (isLearned) 1 else 0
+    isLearned = if (isLearned) 1 else 0,
+    lastShownDate = lastShownDate
 )
 
 // QuizSession mappers

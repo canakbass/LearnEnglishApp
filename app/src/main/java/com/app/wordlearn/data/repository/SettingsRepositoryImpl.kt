@@ -57,4 +57,9 @@ class SettingsRepositoryImpl @Inject constructor(
         }
         return lockedDailyCount
     }
+
+    override fun invalidateDailyCountCache() {
+        lockedDailyCount = -1
+        lockedDate = 0L
+    }
 }

@@ -26,6 +26,7 @@ import com.app.wordlearn.domain.model.StoryDto
 import com.app.wordlearn.domain.model.WordDto
 import com.app.wordlearn.domain.model.WordProgressDto
 import com.app.wordlearn.domain.model.WordSampleDto
+import com.app.wordlearn.domain.repository.SettingsRepository
 import com.app.wordlearn.domain.util.CrashReporter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +65,7 @@ class BackupRepository @Inject constructor(
     private val quizAnswerDao: QuizAnswerDao,
     private val settingsDao: SettingsDao,
     private val storyDao: StoryDao,
+    private val settingsRepository: SettingsRepository,
 ) {
 
     private val json = Json {
@@ -88,9 +90,14 @@ class BackupRepository @Inject constructor(
             val storyImageMap = mutableMapOf<Long, String>()
 
             val wordDtos = userWords.map { w ->
+                // BUG #11 fix: side-effect'i takeIf öncesine almıştık — yalnızca dosya gerçekten okunabiliyorsa
+                // pictureMap'e ekle. Aksi halde ZIP'e boş entry yazma denemesi olur.
                 val pictureFile = w.picturePath?.let { path ->
-                    fileNameForWord(w).also { pictureMap[w.wordId] = it; }
-                        .takeIf { resolveExistingInput(path) != null }
+                    if (resolveExistingInput(path) != null) {
+                        val name = fileNameForWord(w)
+                        pictureMap[w.wordId] = name
+                        name
+                    } else null
                 }
                 WordDto(
                     originalWordId = w.wordId,
@@ -109,9 +116,12 @@ class BackupRepository @Inject constructor(
                 WordSampleDto(engWord = engWord, sentence = s.sentence)
             }
 
+            // engWord başına dedup: aynı engWord birden fazla wordId'ye (sistem + user) bağlıysa,
+            // restore'da REPLACE ile birbirini ezecek progress'lerin en bilgili olanını koru.
+            // Öncelik: totalAttempts > 0 olanlar; eşitlikte totalCorrect yüksek olan.
             val progressDtos = allProgress.mapNotNull { p ->
                 val engWord = allWordsById[p.wordId]?.engWord ?: return@mapNotNull null
-                WordProgressDto(
+                engWord to WordProgressDto(
                     engWord = engWord,
                     correctStreak = p.correctStreak,
                     reviewStage = p.reviewStage,
@@ -119,9 +129,16 @@ class BackupRepository @Inject constructor(
                     totalAttempts = p.totalAttempts,
                     nextReviewDate = p.nextReviewDate,
                     lastAnsweredDate = p.lastAnsweredDate,
-                    isLearned = p.isLearned == 1
+                    isLearned = p.isLearned == 1,
+                    lastShownDate = p.lastShownDate
                 )
             }
+                .groupBy({ it.first }, { it.second })
+                .map { (_, candidates) ->
+                    candidates.maxByOrNull {
+                        it.totalAttempts * 1_000_000L + it.totalCorrect + (if (it.isLearned) 1 else 0)
+                    }!!
+                }
 
             val progressIdToEng: Map<Int, String> = allProgress.mapNotNull { p ->
                 val eng = allWordsById[p.wordId]?.engWord ?: return@mapNotNull null
@@ -158,8 +175,11 @@ class BackupRepository @Inject constructor(
 
             val storyDtos = allStories.map { s ->
                 val imageFile = s.imagePath?.takeIf { s.isLocalImage }?.let { path ->
-                    fileNameForStory(s).also { storyImageMap[s.storyId] = it }
-                        .takeIf { resolveExistingInput(path) != null }
+                    if (resolveExistingInput(path) != null) {
+                        val name = fileNameForStory(s)
+                        storyImageMap[s.storyId] = name
+                        name
+                    } else null
                 }
                 StoryDto(
                     words = s.words,
@@ -185,6 +205,8 @@ class BackupRepository @Inject constructor(
             val output = context.contentResolver.openOutputStream(destination, "w")
                 ?: error("Çıktı dosyası açılamadı")
 
+            var imagesWritten = 0
+            var imagesSkipped = 0
             ZipOutputStream(output.buffered()).use { zip ->
                 // data.json
                 zip.putNextEntry(ZipEntry(DATA_JSON))
@@ -195,10 +217,17 @@ class BackupRepository @Inject constructor(
                 userWords.forEach { w ->
                     val path = w.picturePath ?: return@forEach
                     val filename = pictureMap[w.wordId] ?: return@forEach
-                    resolveExistingInput(path)?.use { input ->
+                    val input = resolveExistingInput(path)
+                    if (input == null) {
+                        imagesSkipped++
+                        CrashReporter.log(TAG, "Export: word ${w.wordId} '$path' okunamadı, atlandı")
+                        return@forEach
+                    }
+                    input.use {
                         zip.putNextEntry(ZipEntry("$IMAGES_DIR/$filename"))
-                        input.copyTo(zip)
+                        it.copyTo(zip)
                         zip.closeEntry()
+                        imagesWritten++
                     }
                 }
                 allStories.forEach { s ->
@@ -209,16 +238,30 @@ class BackupRepository @Inject constructor(
                         zip.putNextEntry(ZipEntry("$IMAGES_DIR/$filename"))
                         input.copyTo(zip)
                         zip.closeEntry()
+                        imagesWritten++
                     }
                 }
             }
+            CrashReporter.log(
+                TAG,
+                "Export done: words=${backup.userWords.size} imagesWritten=$imagesWritten imagesSkipped=$imagesSkipped"
+            )
 
             backup.userWords.size
         }.onFailure { CrashReporter.reportException(TAG, "Export failed", it) }
     }
 
+    /** Restore istatistikleri — UI'ya geri bildirim için. */
+    data class ImportStats(
+        val wordCount: Int,
+        val progressRestored: Int,
+        val progressDropped: Int,
+        val answersRestored: Int,
+        val answersDropped: Int
+    )
+
     /** Verilen Uri'den ZIP'i okur, mevcut kullanıcı verisini değiştirir. */
-    suspend fun importFrom(source: Uri): Result<Int> = withContext(Dispatchers.IO) {
+    suspend fun importFrom(source: Uri): Result<ImportStats> = withContext(Dispatchers.IO) {
         runCatching {
             // 1. ZIP'i geçici bir klasöre aç.
             val extractDir = File(context.cacheDir, "restore_${System.currentTimeMillis()}").apply { mkdirs() }
@@ -248,29 +291,55 @@ class BackupRepository @Inject constructor(
 
             // 2. Resimleri kalıcı klasöre taşı.
             val imagesDir = File(context.filesDir, "user_images").apply { mkdirs() }
-            val extractedImages = extractDir.listFiles().orEmpty()
-            val imagePathMap: Map<String, String> = extractedImages.associate { f ->
-                val dest = File(imagesDir, "${System.currentTimeMillis()}_${f.name}")
-                f.copyTo(dest, overwrite = true)
-                f.name to dest.absolutePath
-            }
+            val extractedImages = extractDir.listFiles().orEmpty().filter { it.isFile }
+            var imagesCopied = 0
+            var imagesFailed = 0
+            val imagePathMap: Map<String, String> = extractedImages.mapNotNull { f ->
+                runCatching {
+                    val dest = File(imagesDir, "${System.currentTimeMillis()}_${f.name}")
+                    f.copyTo(dest, overwrite = true)
+                    if (dest.length() <= 0L) error("0 byte dest file")
+                    imagesCopied++
+                    f.name to dest.absolutePath
+                }.onFailure {
+                    imagesFailed++
+                    CrashReporter.log(TAG, "Image kopyalama hatası ${f.name}: ${it.message}")
+                }.getOrNull()
+            }.toMap()
             extractDir.deleteRecursively()
+            CrashReporter.log(
+                TAG,
+                "Extracted images: ${extractedImages.size}, copied=$imagesCopied, failed=$imagesFailed"
+            )
+
+            // İstatistik sayaçları — UI'ya geri dönecek.
+            var progressRestored = 0
+            var progressDropped = 0
+            var answersRestored = 0
+            var answersDropped = 0
+            var deletedUserWords = 0
 
             // 3. Transaction içinde yeniden inşa et.
             appDatabase.withTransaction {
+                // Mevcut UID'yi delete öncesi cache'le — restore sonrası hesap eşleşmesini korur.
+                val preservedUid = settingsDao.getSettings()?.firebaseUid.orEmpty()
+
                 quizAnswerDao.deleteAll()
                 quizSessionDao.deleteAll()
                 wordProgressDao.deleteAll()
                 wordSampleDao.deleteAll()
                 storyDao.clearAllStories()
                 settingsDao.deleteAll()
-                wordDao.deleteAllUserWords()
+                deletedUserWords = wordDao.deleteAllUserWords()
 
-                // User words insert + engWord → newWordId mapping
-                val engToNewId = mutableMapOf<String, Int>()
+                // User words insert + engWord → newWordId mapping.
+                // BUG #7 fix: System ve user mappinglerini ayrı tutuyoruz; user word'ün engWord'ü
+                // sistemle çakışırsa system kayıtları override edilmiyor — progress lookup'ta
+                // önce user, bulamazsa system map'i denenir.
+                val systemMap = mutableMapOf<String, Int>()
+                val userMap = mutableMapOf<String, Int>()
 
-                // önce DB'de var olan sistem kelimelerinin map'ini al
-                wordDao.getAllWords().forEach { engToNewId[it.engWord] = it.wordId }
+                wordDao.getAllWords().forEach { systemMap[it.engWord] = it.wordId }
 
                 data.userWords.forEach { dto ->
                     val pic = dto.pictureFileName?.let { imagePathMap[it] }
@@ -286,40 +355,65 @@ class BackupRepository @Inject constructor(
                             createdAt = dto.createdAt
                         )
                     ).toInt()
-                    engToNewId[dto.engWord] = newId
+                    userMap[dto.engWord] = newId
                 }
 
-                // Samples
+                // Samples — sample'lar genelde user word'lere bağlı; user öncelikli.
                 val sampleEntities = data.wordSamples.mapNotNull {
-                    val wid = engToNewId[it.engWord] ?: return@mapNotNull null
+                    val wid = userMap[it.engWord] ?: systemMap[it.engWord] ?: return@mapNotNull null
                     WordSampleEntity(wordId = wid, sentence = it.sentence)
                 }
                 if (sampleEntities.isNotEmpty()) wordSampleDao.insertSamples(sampleEntities)
 
-                // Progress restore: engWord → progressId map'i kurmak için
-                // wordId → engWord ters map kullan (doğrudan, O(1) lookup)
-                val progressByEng = mutableMapOf<String, Int>()
-                val newIdToEng: Map<Int, String> = engToNewId.entries.associate { (eng, wid) -> wid to eng }
+                // Progress restore: backup'taki her progress dto'sunu hem user hem system map'i ile dener.
+                // Aynı engWord her iki map'te de varsa İKİ ayrı progress kaydı oluşturulur — biri user
+                // biri system için. Bu, ileride istatistik bozulmasına engel olur (BUG #7).
+                val widToEng = mutableMapOf<Int, String>()
+                systemMap.forEach { (eng, wid) -> widToEng[wid] = eng }
+                userMap.forEach { (eng, wid) -> widToEng[wid] = eng }
 
-                data.progress.forEach { dto ->
-                    val wid = engToNewId[dto.engWord] ?: return@forEach
-                    wordProgressDao.insertProgress(
-                        WordProgressEntity(
-                            wordId = wid,
-                            correctStreak = dto.correctStreak,
-                            reviewStage = dto.reviewStage,
-                            totalCorrect = dto.totalCorrect,
-                            totalAttempts = dto.totalAttempts,
-                            nextReviewDate = dto.nextReviewDate,
-                            lastAnsweredDate = dto.lastAnsweredDate,
-                            isLearned = if (dto.isLearned) 1 else 0
+                // Defansif dedup: eski v1 backuplarda aynı engWord için birden fazla DTO olabilir
+                // (sistem + user word çakışması). En bilgili olanı (totalAttempts en yüksek) koru.
+                val dedupedProgress = data.progress
+                    .groupBy { it.engWord }
+                    .map { (_, candidates) ->
+                        candidates.maxByOrNull {
+                            it.totalAttempts * 1_000_000L + it.totalCorrect + (if (it.isLearned) 1 else 0)
+                        }!!
+                    }
+                val duplicatesSkipped = data.progress.size - dedupedProgress.size
+
+                dedupedProgress.forEach { dto ->
+                    val targets = listOfNotNull(systemMap[dto.engWord], userMap[dto.engWord]).distinct()
+                    if (targets.isEmpty()) {
+                        progressDropped++
+                        return@forEach
+                    }
+                    targets.forEach { wid ->
+                        wordProgressDao.insertProgress(
+                            WordProgressEntity(
+                                wordId = wid,
+                                correctStreak = dto.correctStreak,
+                                reviewStage = dto.reviewStage,
+                                totalCorrect = dto.totalCorrect,
+                                totalAttempts = dto.totalAttempts,
+                                nextReviewDate = dto.nextReviewDate,
+                                lastAnsweredDate = dto.lastAnsweredDate,
+                                isLearned = if (dto.isLearned) 1 else 0,
+                                lastShownDate = dto.lastShownDate
+                            )
                         )
-                    )
+                        progressRestored++
+                    }
                 }
-                // Yeni atanan progressId'leri oku ve eng map'ini kur
+                progressDropped += duplicatesSkipped
+                // Yeni atanan progressId'leri oku ve eng map'ini kur.
+                // Aynı engWord birden fazla wid'e bağlıysa progressByEng son işlenen wid'in id'sini tutar;
+                // quiz_answers restore'unda her iki kayıt da bağlanmasa bile en azından bir kayıt bağlanır.
+                val progressByEng = mutableMapOf<String, Int>()
                 wordProgressDao.getAllProgress().forEach { p ->
-                    val eng = newIdToEng[p.wordId]
-                    if (eng != null) progressByEng[eng] = p.progressId
+                    val eng = widToEng[p.wordId] ?: return@forEach
+                    progressByEng[eng] = p.progressId
                 }
 
                 // Quiz sessions: insert tek tek ki yeni sessionId mapping çıkartabilelim
@@ -338,8 +432,12 @@ class BackupRepository @Inject constructor(
 
                 // Quiz answers
                 data.quizAnswers.forEach { a ->
-                    val sid = oldToNewSession[a.originalSessionId] ?: return@forEach
-                    val pid = progressByEng[a.engWord] ?: return@forEach
+                    val sid = oldToNewSession[a.originalSessionId]
+                    val pid = progressByEng[a.engWord]
+                    if (sid == null || pid == null) {
+                        answersDropped++
+                        return@forEach
+                    }
                     quizAnswerDao.insertAnswer(
                         QuizAnswerEntity(
                             sessionId = sid,
@@ -348,18 +446,19 @@ class BackupRepository @Inject constructor(
                             answeredAt = a.answeredAt
                         )
                     )
+                    answersRestored++
                 }
 
-                // Settings
-                data.settings?.let {
+                // Settings — UID delete öncesi cache'lendi; geri yaz.
+                data.settings?.let { dto ->
                     settingsDao.insertSettings(
                         SettingsEntity(
                             id = 1,
-                            firebaseUid = "",
-                            displayName = it.displayName,
-                            dailyNewWordCount = it.dailyNewWordCount,
-                            userLevel = it.userLevel,
-                            updatedAt = it.updatedAt
+                            firebaseUid = preservedUid,
+                            displayName = dto.displayName,
+                            dailyNewWordCount = dto.dailyNewWordCount,
+                            userLevel = dto.userLevel,
+                            updatedAt = dto.updatedAt
                         )
                     )
                 }
@@ -378,7 +477,24 @@ class BackupRepository @Inject constructor(
                 if (storyEntities.isNotEmpty()) storyDao.insertAll(storyEntities)
             }
 
-            data.userWords.size
+            // BUG #6 fix: SettingsRepository @Singleton'da gün içinde bellekteki kotayı tutuyor.
+            // Restore sonrası yedek dosyasından gelen dailyNewWordCount bir sonraki quiz'de devreye girsin.
+            settingsRepository.invalidateDailyCountCache()
+
+            val stats = ImportStats(
+                wordCount = data.userWords.size,
+                progressRestored = progressRestored,
+                progressDropped = progressDropped,
+                answersRestored = answersRestored,
+                answersDropped = answersDropped
+            )
+            CrashReporter.log(
+                TAG,
+                "Import done: deletedUserWords=$deletedUserWords " +
+                    "newUserWords=${stats.wordCount} progress=$progressRestored " +
+                    "(dropped=$progressDropped) answers=$answersRestored (dropped=$answersDropped)"
+            )
+            stats
         }.onFailure { CrashReporter.reportException(TAG, "Import failed", it) }
     }
 

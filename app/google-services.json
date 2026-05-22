@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "190133037541-fsvbnl628cdnj59r7uv9tq7esimtlsjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.wordlearn",
+            "certificate_hash": "4af3eb829bd8571522b5bd8ac7dbf261b58afd57"
+          }
+        },
+        {
           "client_id": "190133037541-17isl7heleda1pcd4lna6ljr08sbb2q0.apps.googleusercontent.com",
           "client_type": 3
         }

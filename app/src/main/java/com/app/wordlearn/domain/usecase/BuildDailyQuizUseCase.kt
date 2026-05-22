@@ -1,5 +1,6 @@
 package com.app.wordlearn.domain.usecase
 
+import android.util.Log
 import com.app.wordlearn.domain.model.QuizQuestion
 import com.app.wordlearn.domain.model.WordProgress
 import com.app.wordlearn.domain.repository.ProgressRepository
@@ -7,6 +8,19 @@ import com.app.wordlearn.domain.repository.SettingsRepository
 import com.app.wordlearn.domain.repository.WordRepository
 import javax.inject.Inject
 
+/**
+ * Günlük quiz havuzunu hazırlar.
+ *
+ * Tasarım:
+ *  - Tüm aday kelimeler **tek bir listede** toplanır → `distinctBy { wordId }` ile
+ *    aynı kelimenin iki kez seçilmesi imkansız hâle gelir.
+ *  - Bugün cevaplanmış (`lastAnsweredDate >= startOfDay`) ve öğrenilmiş
+ *    (`isLearned == true`) kelimeler her durumda dışlanır.
+ *  - Sıralama: önce bugün gösterilip cevaplanmamış kelimeler (devam mantığı),
+ *    sonra dünden due olanlar, en son yeni kelimeler.
+ *  - Practice mode quotanın dolması durumunda devreye girer; aynı filtre kuralları
+ *    geçerlidir — bu yüzden bugün yapılan/yanlış yapılan kelime asla geri sorulmaz.
+ */
 class BuildDailyQuizUseCase @Inject constructor(
     private val wordRepository: WordRepository,
     private val progressRepository: ProgressRepository,
@@ -14,82 +28,91 @@ class BuildDailyQuizUseCase @Inject constructor(
 ) {
     suspend fun execute(): List<QuizQuestion> {
         val today = System.currentTimeMillis()
-        val calendar = java.util.Calendar.getInstance()
-        calendar.timeInMillis = today
-        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0)
-        calendar.set(java.util.Calendar.MINUTE, 0)
-        calendar.set(java.util.Calendar.SECOND, 0)
-        calendar.set(java.util.Calendar.MILLISECOND, 0)
-        val startOfDay = calendar.timeInMillis
+        val startOfDay = startOfDay(today)
 
-        // Bugünün günlük kotasını kilitle:
-        // Eğer bugün zaten quiz başlatıldıysa (önceden cevap verildiyse) o an ayarlanan
-        // dailyCount'u kullan; böylece kullanıcı sayıyı değiştirince bugünü etkilemez.
+        // --- 1. Sistem ihtiyaçları ---
+        val allWords = wordRepository.getAllWords()
+        if (allWords.size < 4) return emptyList()
+
+        // Henüz progress kaydı olmayan kelimeler için iskelet kayıt oluştur.
+        val existingProgress = progressRepository.getAllProgress()
+        val existingWordIds = existingProgress.mapTo(mutableSetOf()) { it.wordId }
+        allWords.asSequence()
+            .filter { it.wordId !in existingWordIds }
+            .forEach { word ->
+                progressRepository.createProgress(
+                    WordProgress(
+                        wordId = word.wordId,
+                        nextReviewDate = 0L,
+                        lastAnsweredDate = 0L,
+                        lastShownDate = 0L
+                    )
+                )
+            }
+
         val dailyCount = settingsRepository.getEffectiveDailyCount(startOfDay)
         val answeredToday = progressRepository.getAnsweredTodayCount(startOfDay)
-        val remainingCount = dailyCount - answeredToday
+        val isPracticeMode = (dailyCount - answeredToday) <= 0
+        val targetCount = if (isPracticeMode) answeredToday else (dailyCount - answeredToday)
 
-        val isPracticeMode = remainingCount <= 0
-        val targetCount = if (isPracticeMode) dailyCount else remainingCount
-
-        // 1. Tüm kelimeleri kontrol et
-        val allWords = wordRepository.getAllWords()
-        if (allWords.size < 4) return emptyList() // En az 4 kelime lazım (1 doğru + 3 yanlış şık)
-
-        // 2. Her kelime için progress kaydını oluştur (yoksa)
-        val existingProgress = progressRepository.getAllProgress()
-        val existingWordIds = existingProgress.map { it.wordId }.toSet()
-
-        val untrackedWords = allWords.filter { it.wordId !in existingWordIds }
-        untrackedWords.forEach { word ->
-            progressRepository.createProgress(
-                WordProgress(
-                    wordId = word.wordId,
-                    correctStreak = 0,
-                    reviewStage = 0,
-                    totalCorrect = 0,
-                    totalAttempts = 0,
-                    nextReviewDate = 0L,
-                    lastAnsweredDate = 0L,
-                    isLearned = false
-                )
-            )
-        }
-
-        // 3. Tekrar vadesi gelen kelimeleri al (bugün cevaplanmış olanları hariç tut)
-        val dueWords = progressRepository.getDueWords(today, startOfDay)
-
-        // 4. Henüz hiç denenmemiş yeni kelimeler
-        val newWords = progressRepository.getNewWords(targetCount)
-
-        // 5. Birleştir ve sınırla
-        var quizWords = (dueWords + newWords).distinctBy { it.wordId }.take(targetCount)
-
-        // 6. Eğer hala kota dolmadıysa ve veritabanında başka öğrenilmemiş kelime varsa ekle
-        if (quizWords.size < targetCount) {
-            val existingIds = quizWords.map { it.wordId }.toSet()
-            val extraWords = progressRepository.getAllProgress()
-                .filter { !it.isLearned && it.wordId !in existingIds }
+        // --- 2. Aday havuzu seçimi ---
+        // İki ayrı mod var; ProcessAnswerUseCase aynı gün içindeki tekrarları zaten
+        // istatistiklere yansıtmıyor (lastAnsweredDate >= startOfDay → no-op).
+        //
+        //   NORMAL MOD (quota dolmadı):
+        //     - Hard rule: bugün cevaplanmış veya öğrenilmiş kelime ASLA aday değildir.
+        //     - Yeni kelime + bugün gösterilmiş ama cevaplanmamış (devam) + dünden due.
+        //
+        //   PRACTICE MOD (quota doldu):
+        //     - Yeni kelime YOK — günlük kelime kotasını korumak için kritik.
+        //     - Sadece bugün cevapladığı kelimeleri tekrar göster (rastgele sıra).
+        //     - İstatistik etkilenmez (ProcessAnswer no-op).
+        val allProgress = progressRepository.getAllProgress()
+        val selected = if (isPracticeMode) {
+            allProgress
+                .filter { it.lastAnsweredDate >= startOfDay }
+                .distinctBy { it.wordId }
                 .shuffled()
-                .take(targetCount - quizWords.size)
-            quizWords = quizWords + extraWords
-        }
+                .take(targetCount)
+        } else {
+            val candidates = allProgress.filter {
+                !it.isLearned && it.lastAnsweredDate < startOfDay
+            }
 
-        // 6.5. Practice mode: Eğer quizWords boşsa, rastgele kelimeler getir
-        if (quizWords.isEmpty() && isPracticeMode) {
-            quizWords = progressRepository.getAllProgress()
-                .shuffled()
+            // Öncelik sırası (küçük rank önce):
+            //  rank 0: pending — bugün gösterilmiş ama cevaplanmamış (devam)
+            //  rank 1: due — dünden veya öncesinden due, henüz bugün gösterilmedi
+            //  rank 2: new — hiç sorulmamış kelimeler
+            //  rank 3: diğer öğrenilmemiş (en son tarihli)
+            fun rank(p: WordProgress): Int = when {
+                p.lastShownDate >= startOfDay -> 0
+                p.totalAttempts > 0 && p.nextReviewDate <= today -> 1
+                p.totalAttempts == 0 -> 2
+                else -> 3
+            }
+
+            candidates
+                .sortedWith(compareBy({ rank(it) }, { it.lastShownDate }, { it.wordId }))
+                .distinctBy { it.wordId }
                 .take(targetCount)
         }
 
-        if (quizWords.isEmpty()) return emptyList()
+        // --- 3. Yeni gösterilenleri işaretle (sadece bugün gösterilmemiş olanlar) ---
+        val newlyMarked = selected.filter { it.lastShownDate < startOfDay }
+        newlyMarked.forEach { p ->
+            progressRepository.updateProgress(p.copy(lastShownDate = startOfDay))
+        }
 
-        // 7. Her kelime için 4 şıklı soru oluştur
-        val questions = quizWords.mapNotNull { progress ->
+        if (selected.isEmpty()) {
+            Log.d(TAG, "execute: havuzda uygun kelime yok (target=$targetCount, practice=$isPracticeMode)")
+            return emptyList()
+        }
+
+        // --- 4. Sorulara dönüştür ---
+        val questions = selected.mapNotNull { progress ->
             val word = wordRepository.getWordById(progress.wordId) ?: return@mapNotNull null
 
-            // 3 rastgele yanlış şık al (garanti olması için 10 tane çekip filtreliyoruz)
-            val wrongOptions = wordRepository.getRandomWords(10, word.wordId)
+            val wrongOptions = wordRepository.getRandomWords(30, word.wordId)
                 .map { it.turWord }
                 .filter { it != word.turWord }
                 .distinct()
@@ -97,18 +120,49 @@ class BuildDailyQuizUseCase @Inject constructor(
 
             if (wrongOptions.size < 3) return@mapNotNull null
 
-            // Doğru cevap + yanlış şıkları karıştır
             val options = (wrongOptions + word.turWord).distinct().shuffled()
-
+            val samples = wordRepository.getWordSamples(word.wordId)
+                .map { it.sentence.trim() }
+                .filter { it.isNotEmpty() }
             QuizQuestion(
                 wordId = word.wordId,
                 questionText = word.engWord,
                 correctAnswer = word.turWord,
                 options = options,
-                picturePath = word.picturePath
+                picturePath = word.picturePath,
+                sampleSentences = samples
             )
         }
 
-        return questions.shuffled()
+        // --- 5. Atlanan kelimelerin lastShownDate'ini geri al ---
+        val questionWordIds = questions.mapTo(mutableSetOf()) { it.wordId }
+        newlyMarked
+            .filterNot { it.wordId in questionWordIds }
+            .forEach { progressRepository.updateProgress(it) }
+
+        // En sondaki defansif distinct — beklenmedik bir akış bile olsa
+        // aynı kelime asla iki kez sorulmaz.
+        val finalQuestions = questions.distinctBy { it.wordId }.shuffled()
+        Log.d(
+            TAG,
+            "execute: target=$targetCount selected=${selected.size} " +
+                "questions=${finalQuestions.size} answeredToday=$answeredToday practice=$isPracticeMode"
+        )
+        return finalQuestions
+    }
+
+    private fun startOfDay(timestamp: Long): Long {
+        val cal = java.util.Calendar.getInstance().apply {
+            timeInMillis = timestamp
+            set(java.util.Calendar.HOUR_OF_DAY, 0)
+            set(java.util.Calendar.MINUTE, 0)
+            set(java.util.Calendar.SECOND, 0)
+            set(java.util.Calendar.MILLISECOND, 0)
+        }
+        return cal.timeInMillis
+    }
+
+    companion object {
+        private const val TAG = "BuildDailyQuiz"
     }
 }

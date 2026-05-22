@@ -10,7 +10,9 @@ sealed class QuizUiState {
         val totalQuestions: Int,
         val score: Int,
         val actualQuestionNumber: Int = questionIndex + 1,
-        val dailyTotalQuestions: Int = totalQuestions
+        val dailyTotalQuestions: Int = totalQuestions,
+        /** Quota dolduktan sonra bugünkü kelimelerin tekrar oturumu. İstatistikleri etkilemez. */
+        val isPracticeMode: Boolean = false
     ) : QuizUiState()
     data class Feedback(
         val isCorrect: Boolean,

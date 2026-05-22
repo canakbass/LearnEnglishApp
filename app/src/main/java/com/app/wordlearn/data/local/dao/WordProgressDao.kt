@@ -8,11 +8,17 @@ interface WordProgressDao {
     @Query("SELECT * FROM word_progress WHERE wordId = :wordId")
     suspend fun getProgressByWordId(wordId: Int): WordProgressEntity?
 
-    @Query("SELECT * FROM word_progress WHERE nextReviewDate <= :today AND isLearned = 0 AND totalAttempts > 0 AND lastAnsweredDate < :startOfDay")
+    @Query("SELECT * FROM word_progress WHERE nextReviewDate <= :today AND isLearned = 0 AND totalAttempts > 0 AND lastAnsweredDate < :startOfDay AND lastShownDate < :startOfDay")
     suspend fun getDueWords(today: Long, startOfDay: Long): List<WordProgressEntity>
 
-    @Query("SELECT * FROM word_progress WHERE totalAttempts = 0 AND isLearned = 0 ORDER BY RANDOM() LIMIT :count")
-    suspend fun getNewWords(count: Int): List<WordProgressEntity>
+    @Query("SELECT * FROM word_progress WHERE totalAttempts = 0 AND isLearned = 0 AND lastShownDate < :startOfDay ORDER BY RANDOM() LIMIT :count")
+    suspend fun getNewWords(count: Int, startOfDay: Long): List<WordProgressEntity>
+
+    @Query("SELECT * FROM word_progress WHERE totalAttempts = 0 AND isLearned = 0 AND lastShownDate >= :startOfDay")
+    suspend fun getPendingNewWords(startOfDay: Long): List<WordProgressEntity>
+
+    @Query("SELECT * FROM word_progress WHERE totalAttempts > 0 AND isLearned = 0 AND lastAnsweredDate < :startOfDay AND lastShownDate >= :startOfDay")
+    suspend fun getPendingDueWords(startOfDay: Long): List<WordProgressEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProgress(progress: WordProgressEntity)

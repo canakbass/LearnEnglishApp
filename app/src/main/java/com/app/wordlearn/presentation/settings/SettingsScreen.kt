@@ -61,7 +61,14 @@ fun SettingsScreen(
                 viewModel.clearBackupEvent()
             }
             is BackupUiEvent.ImportSuccess -> {
-                snackbarHostState.showSnackbar("✓ Veriler içe aktarıldı (${e.wordCount} kelime). Yenileniyor...")
+                val msg = buildString {
+                    append("✓ Geri yüklendi: ${e.wordCount} kelime, ")
+                    append("${e.progressRestored} ilerleme, ${e.answersRestored} cevap")
+                    if (e.progressDropped > 0 || e.answersDropped > 0) {
+                        append(" • atlanan: ${e.progressDropped} ilerleme, ${e.answersDropped} cevap")
+                    }
+                }
+                snackbarHostState.showSnackbar(msg)
                 viewModel.clearBackupEvent()
                 // Import sonrası tüm ViewModel'lerin güncel veriyi çekmesi için Activity yeniden başlat.
                 if (e.needsRestart) {
@@ -409,4 +416,5 @@ private fun AccountManagementCard(
 private fun suggestedBackupFileName(): String {
     val ts = java.text.SimpleDateFormat("yyyyMMdd_HHmm", java.util.Locale.getDefault())
         .format(java.util.Date())
-    return "wordlear
+    return "wordlearn-backup-$ts.zip"
+}

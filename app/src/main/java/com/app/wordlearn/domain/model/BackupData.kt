@@ -67,7 +67,8 @@ data class WordProgressDto(
     val totalAttempts: Int,
     val nextReviewDate: Long,
     val lastAnsweredDate: Long,
-    val isLearned: Boolean
+    val isLearned: Boolean,
+    val lastShownDate: Long = 0L
 )
 
 @Serializable

@@ -36,4 +36,7 @@ class SessionRepositoryImpl @Inject constructor(
 
     override suspend fun getAllAnswers(): List<QuizAnswer> =
         quizAnswerDao.getAllAnswers().map { it.toDomain() }
+
+    override suspend fun getTodayCorrectCount(startOfDay: Long): Int =
+        quizAnswerDao.getTodayCorrectCount(startOfDay)
 }

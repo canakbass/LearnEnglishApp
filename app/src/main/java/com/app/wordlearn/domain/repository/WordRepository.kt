@@ -14,4 +14,6 @@ interface WordRepository {
     suspend fun insertWords(words: List<Word>)
     suspend fun getWordCount(): Int
     suspend fun getRandomWords(count: Int, excludeId: Int): List<Word>
+    /** Yalnızca kullanıcının eklediği kelimeleri (source = "user") siler. */
+    suspend fun deleteUserWord(wordId: Int)
 }
