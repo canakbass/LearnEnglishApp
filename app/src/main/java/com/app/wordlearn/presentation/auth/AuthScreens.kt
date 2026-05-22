@@ -37,202 +37,208 @@ fun LoginScreen(
     onGuestLogin: () -> Unit = {}
 ) {
     val authState by authViewModel.authState.collectAsState()
-    // rememberSaveable: configuration change (rotate, dark mode toggle, vs.) sonrası
-    // kullanıcının yazdığı kullanıcı adı/şifre kaybolmasın. passwordVisible flag de korunsun.
     var username by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-
     val context = LocalContext.current
-
-    // Google Sign-In launcher
-    val googleSignInLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        // resultCode ne olursa olsun task'ı parse et:
-        // DEVELOPER_ERROR (kod 10) ve benzeri hatalar RESULT_CANCELED ile dönebilir.
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        try {
-            val account = task.getResult(ApiException::class.java)
-            if (account?.idToken != null) {
-                authViewModel.handleGoogleSignInResult(account.idToken)
-            } else {
-                authViewModel.handleGoogleSignInError(10)
-            }
-        } catch (e: ApiException) {
-            // 12501 = kullanıcının kendi isteğiyle kapattığı picker → sessiz geç
-            if (e.statusCode != 12501) {
-                authViewModel.handleGoogleSignInError(e.statusCode)
-            }
-        }
-    }
+    val googleSignInLauncher = rememberGoogleSignInLauncher(authViewModel)
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) onLoginSuccess()
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(32.dp),
+            modifier = Modifier.fillMaxSize().padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "📚 WordLearn",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = "İngilizce Kelime Ezberleme",
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-            )
-
+            LoginHeader()
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Google Sign-In Button
-            OutlinedButton(
+            GoogleSignInButton(
                 onClick = {
                     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestIdToken(BuildConfig.WEB_CLIENT_ID)
                         .requestEmail()
                         .build()
-                    val googleSignInClient = GoogleSignIn.getClient(context, gso)
-                    googleSignInClient.signOut() // Clear previous selection
-                    googleSignInLauncher.launch(googleSignInClient.signInIntent)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
-            ) {
-                Text("G", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4285F4))
-                Spacer(modifier = Modifier.width(12.dp))
-                Text("Google ile Giriş Yap", fontSize = 16.sp)
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                HorizontalDivider(modifier = Modifier.weight(1f))
-                Text(
-                    "  veya  ",
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-                    fontSize = 14.sp
-                )
-                HorizontalDivider(modifier = Modifier.weight(1f))
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = username,
-                onValueChange = { username = it },
-                label = { Text("E-posta") },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("Şifre") },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                trailingIcon = {
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Icon(
-                            if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                            contentDescription = "Şifre göster/gizle"
-                        )
-                    }
+                    val client = GoogleSignIn.getClient(context, gso)
+                    client.signOut()
+                    googleSignInLauncher.launch(client.signInIntent)
                 }
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            OrDivider()
+            Spacer(modifier = Modifier.height(16.dp))
 
+            CredentialFields(
+                username = username,
+                onUsernameChange = { username = it },
+                password = password,
+                onPasswordChange = { password = it },
+                passwordVisible = passwordVisible,
+                onTogglePasswordVisibility = { passwordVisible = !passwordVisible }
+            )
             Spacer(modifier = Modifier.height(4.dp))
-            
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
-                // resetPassword e-posta validasyonunu ViewModel'da yapar (boş/geçersiz e-posta
-                // için kendisi errorMessage set eder). Burada koşullu çağrı gereksizdi.
-                TextButton(onClick = { authViewModel.resetPassword(username) }) {
-                    Text("Şifremi Unuttum", fontSize = 12.sp)
-                }
-            }
 
-            authState.errorMessage?.let { error ->
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = error,
-                    color = MaterialTheme.colorScheme.error,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
+            ForgotPasswordRow(onForgot = { authViewModel.resetPassword(username) })
 
-            authState.infoMessage?.let { info ->
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = info,
-                    color = Success,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
+            AuthMessages(error = authState.errorMessage, info = authState.infoMessage)
 
             Spacer(modifier = Modifier.height(20.dp))
-
-            Button(
-                onClick = { authViewModel.login(username, password) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                enabled = !authState.isLoading
-            ) {
-                if (authState.isLoading) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        strokeWidth = 2.dp
-                    )
-                } else {
-                    Text("Giriş Yap", fontSize = 16.sp)
-                }
-            }
-
+            PrimaryAuthButton(
+                label = "Giriş Yap",
+                isLoading = authState.isLoading,
+                onClick = { authViewModel.login(username, password) }
+            )
             Spacer(modifier = Modifier.height(16.dp))
-
-            TextButton(onClick = onNavigateToRegister) {
-                Text("Hesabınız yok mu? Kayıt olun")
-            }
-
+            TextButton(onClick = onNavigateToRegister) { Text("Hesabınız yok mu? Kayıt olun") }
             Spacer(modifier = Modifier.height(8.dp))
-
-            TextButton(
-                onClick = onGuestLogin,
-                enabled = !authState.isLoading
-            ) {
+            TextButton(onClick = onGuestLogin, enabled = !authState.isLoading) {
                 Text(
                     "Misafir Olarak Devam Et",
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun rememberGoogleSignInLauncher(authViewModel: AuthViewModel) =
+    rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            val token = account?.idToken
+            if (token != null) authViewModel.handleGoogleSignInResult(token)
+            else authViewModel.handleGoogleSignInError(10)
+        } catch (e: ApiException) {
+            // 12501 = kullanıcının kendi isteğiyle kapattığı picker → sessiz geç
+            if (e.statusCode != 12501) authViewModel.handleGoogleSignInError(e.statusCode)
+        }
+    }
+
+@Composable
+private fun LoginHeader() {
+    Text(
+        text = "📚 WordLearn",
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colorScheme.primary
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(
+        text = "İngilizce Kelime Ezberleme",
+        fontSize = 16.sp,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+    )
+}
+
+@Composable
+private fun GoogleSignInButton(onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().height(50.dp),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+    ) {
+        Text("G", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4285F4))
+        Spacer(modifier = Modifier.width(12.dp))
+        Text("Google ile Giriş Yap", fontSize = 16.sp)
+    }
+}
+
+@Composable
+private fun OrDivider() {
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        HorizontalDivider(modifier = Modifier.weight(1f))
+        Text(
+            "  veya  ",
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+            fontSize = 14.sp
+        )
+        HorizontalDivider(modifier = Modifier.weight(1f))
+    }
+}
+
+@Composable
+private fun CredentialFields(
+    username: String,
+    onUsernameChange: (String) -> Unit,
+    password: String,
+    onPasswordChange: (String) -> Unit,
+    passwordVisible: Boolean,
+    onTogglePasswordVisibility: () -> Unit
+) {
+    OutlinedTextField(
+        value = username,
+        onValueChange = onUsernameChange,
+        label = { Text("E-posta") },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true
+    )
+    Spacer(modifier = Modifier.height(12.dp))
+    OutlinedTextField(
+        value = password,
+        onValueChange = onPasswordChange,
+        label = { Text("Şifre") },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true,
+        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        trailingIcon = {
+            IconButton(onClick = onTogglePasswordVisibility) {
+                Icon(
+                    if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                    contentDescription = "Şifre göster/gizle"
+                )
+            }
+        }
+    )
+}
+
+@Composable
+private fun ForgotPasswordRow(onForgot: () -> Unit) {
+    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+        TextButton(onClick = onForgot) { Text("Şifremi Unuttum", fontSize = 12.sp) }
+    }
+}
+
+@Composable
+private fun AuthMessages(error: String?, info: String?) {
+    error?.let {
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = it,
+            color = MaterialTheme.colorScheme.error,
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center
+        )
+    }
+    info?.let {
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = it, color = Success, fontSize = 14.sp, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+private fun PrimaryAuthButton(label: String, isLoading: Boolean, onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().height(50.dp),
+        enabled = !isLoading
+    ) {
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(20.dp),
+                color = MaterialTheme.colorScheme.onPrimary,
+                strokeWidth = 2.dp
+            )
+        } else {
+            Text(label, fontSize = 16.sp)
         }
     }
 }

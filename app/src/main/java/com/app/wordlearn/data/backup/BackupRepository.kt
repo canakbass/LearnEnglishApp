@@ -27,6 +27,7 @@ import com.app.wordlearn.domain.model.WordDto
 import com.app.wordlearn.domain.model.WordProgressDto
 import com.app.wordlearn.domain.model.WordSampleDto
 import com.app.wordlearn.domain.repository.SettingsRepository
+import com.app.wordlearn.domain.util.Constants
 import com.app.wordlearn.domain.util.CrashReporter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -373,172 +374,207 @@ class BackupRepository @Inject constructor(
         data: BackupData,
         imagePathMap: Map<String, String>
     ): RestoreCounts {
-        var progressRestored = 0
-        var progressDropped = 0
-        var answersRestored = 0
-        var answersDropped = 0
         var deletedUserWords = 0
+        var progressOutcome = ProgressRestoreOutcome(0, 0)
+        var answerOutcome = AnswerRestoreOutcome(0, 0)
 
         appDatabase.withTransaction {
-                // Mevcut UID'yi delete öncesi cache'le — restore sonrası hesap eşleşmesini korur.
-                val preservedUid = settingsDao.getSettings()?.firebaseUid.orEmpty()
-
-                quizAnswerDao.deleteAll()
-                quizSessionDao.deleteAll()
-                wordProgressDao.deleteAll()
-                wordSampleDao.deleteAll()
-                storyDao.clearAllStories()
-                settingsDao.deleteAll()
-                deletedUserWords = wordDao.deleteAllUserWords()
-
-                // User words insert + engWord → newWordId mapping.
-                // BUG #7 fix: System ve user mappinglerini ayrı tutuyoruz; user word'ün engWord'ü
-                // sistemle çakışırsa system kayıtları override edilmiyor — progress lookup'ta
-                // önce user, bulamazsa system map'i denenir.
-                val systemMap = mutableMapOf<String, Int>()
-                val userMap = mutableMapOf<String, Int>()
-
-                wordDao.getAllWords().forEach { systemMap[it.engWord] = it.wordId }
-
-                data.userWords.forEach { dto ->
-                    val pic = dto.pictureFileName?.let { imagePathMap[it] }
-                    val newId = wordDao.insertWord(
-                        WordEntity(
-                            engWord = dto.engWord,
-                            turWord = dto.turWord,
-                            picturePath = pic,
-                            audioPath = null,
-                            level = dto.level,
-                            category = dto.category,
-                            source = "user",
-                            createdAt = dto.createdAt
-                        )
-                    ).toInt()
-                    userMap[dto.engWord] = newId
-                }
-
-                // Samples — sample'lar genelde user word'lere bağlı; user öncelikli.
-                val sampleEntities = data.wordSamples.mapNotNull {
-                    val wid = userMap[it.engWord] ?: systemMap[it.engWord] ?: return@mapNotNull null
-                    WordSampleEntity(wordId = wid, sentence = it.sentence)
-                }
-                if (sampleEntities.isNotEmpty()) wordSampleDao.insertSamples(sampleEntities)
-
-                // Progress restore: backup'taki her progress dto'sunu hem user hem system map'i ile dener.
-                // Aynı engWord her iki map'te de varsa İKİ ayrı progress kaydı oluşturulur — biri user
-                // biri system için. Bu, ileride istatistik bozulmasına engel olur (BUG #7).
-                val widToEng = mutableMapOf<Int, String>()
-                systemMap.forEach { (eng, wid) -> widToEng[wid] = eng }
-                userMap.forEach { (eng, wid) -> widToEng[wid] = eng }
-
-                // Defansif dedup: eski v1 backuplarda aynı engWord için birden fazla DTO olabilir
-                // (sistem + user word çakışması). En bilgili olanı (totalAttempts en yüksek) koru.
-                val dedupedProgress = data.progress
-                    .groupBy { it.engWord }
-                    .mapNotNull { (_, candidates) -> pickRichestProgress(candidates) }
-                val duplicatesSkipped = data.progress.size - dedupedProgress.size
-
-                dedupedProgress.forEach { dto ->
-                    val targets = listOfNotNull(systemMap[dto.engWord], userMap[dto.engWord]).distinct()
-                    if (targets.isEmpty()) {
-                        progressDropped++
-                        return@forEach
-                    }
-                    targets.forEach { wid ->
-                        wordProgressDao.insertProgress(
-                            WordProgressEntity(
-                                wordId = wid,
-                                correctStreak = dto.correctStreak,
-                                reviewStage = dto.reviewStage,
-                                totalCorrect = dto.totalCorrect,
-                                totalAttempts = dto.totalAttempts,
-                                nextReviewDate = dto.nextReviewDate,
-                                lastAnsweredDate = dto.lastAnsweredDate,
-                                isLearned = if (dto.isLearned) 1 else 0,
-                                lastShownDate = dto.lastShownDate
-                            )
-                        )
-                        progressRestored++
-                    }
-                }
-                progressDropped += duplicatesSkipped
-                // Yeni atanan progressId'leri oku ve eng map'ini kur.
-                // Aynı engWord birden fazla wid'e bağlıysa progressByEng son işlenen wid'in id'sini tutar;
-                // quiz_answers restore'unda her iki kayıt da bağlanmasa bile en azından bir kayıt bağlanır.
-                val progressByEng = mutableMapOf<String, Int>()
-                wordProgressDao.getAllProgress().forEach { p ->
-                    val eng = widToEng[p.wordId] ?: return@forEach
-                    progressByEng[eng] = p.progressId
-                }
-
-                // Quiz sessions: insert tek tek ki yeni sessionId mapping çıkartabilelim
-                val oldToNewSession = mutableMapOf<Int, Int>()
-                data.quizSessions.forEach { s ->
-                    val newId = quizSessionDao.insertSession(
-                        QuizSessionEntity(
-                            sessionDate = s.sessionDate,
-                            totalQuestions = s.totalQuestions,
-                            correctCount = s.correctCount,
-                            durationSeconds = s.durationSeconds
-                        )
-                    ).toInt()
-                    oldToNewSession[s.originalSessionId] = newId
-                }
-
-                // Quiz answers
-                data.quizAnswers.forEach { a ->
-                    val sid = oldToNewSession[a.originalSessionId]
-                    val pid = progressByEng[a.engWord]
-                    if (sid == null || pid == null) {
-                        answersDropped++
-                        return@forEach
-                    }
-                    quizAnswerDao.insertAnswer(
-                        QuizAnswerEntity(
-                            sessionId = sid,
-                            progressId = pid,
-                            isCorrect = if (a.isCorrect) 1 else 0,
-                            answeredAt = a.answeredAt
-                        )
-                    )
-                    answersRestored++
-                }
-
-                // Settings — UID delete öncesi cache'lendi; geri yaz.
-                data.settings?.let { dto ->
-                    settingsDao.insertSettings(
-                        SettingsEntity(
-                            id = 1,
-                            firebaseUid = preservedUid,
-                            displayName = dto.displayName,
-                            dailyNewWordCount = dto.dailyNewWordCount,
-                            userLevel = dto.userLevel,
-                            updatedAt = dto.updatedAt
-                        )
-                    )
-                }
-
-                // Stories
-                val storyEntities = data.stories.map { s ->
-                    val img = s.imageFileName?.let { imagePathMap[it] }
-                    StoryEntity(
-                        words = s.words,
-                        storyText = s.storyText,
-                        imagePath = img ?: s.imageFileName?.takeIf { !s.isLocalImage },
-                        isLocalImage = s.isLocalImage && img != null,
-                        createdAt = s.createdAt
-                    )
-                }
-                if (storyEntities.isNotEmpty()) storyDao.insertAll(storyEntities)
-            }   // withTransaction kapanışı
+            val preservedUid = settingsDao.getSettings()?.firebaseUid.orEmpty()
+            deletedUserWords = wipeUserDataTables()
+            val maps = insertUserWordsAndBuildMaps(data, imagePathMap)
+            insertSamples(data, maps)
+            progressOutcome = restoreProgress(data, maps)
+            val progressByEng = buildProgressByEng(maps.widToEng)
+            val oldToNewSession = restoreSessions(data)
+            answerOutcome = restoreAnswers(data, oldToNewSession, progressByEng)
+            restoreSettings(data, preservedUid)
+            restoreStories(data, imagePathMap)
+        }
 
         return RestoreCounts(
             deletedUserWords = deletedUserWords,
-            progressRestored = progressRestored,
-            progressDropped = progressDropped,
-            answersRestored = answersRestored,
-            answersDropped = answersDropped
+            progressRestored = progressOutcome.restored,
+            progressDropped = progressOutcome.dropped,
+            answersRestored = answerOutcome.restored,
+            answersDropped = answerOutcome.dropped
         )
+    }
+
+    /** Tüm kullanıcı tablolarını temizler, silinen user word sayısını döner. */
+    private suspend fun wipeUserDataTables(): Int {
+        quizAnswerDao.deleteAll()
+        quizSessionDao.deleteAll()
+        wordProgressDao.deleteAll()
+        wordSampleDao.deleteAll()
+        storyDao.clearAllStories()
+        settingsDao.deleteAll()
+        return wordDao.deleteAllUserWords()
+    }
+
+    private data class RestoreMaps(
+        val systemMap: Map<String, Int>,
+        val userMap: Map<String, Int>,
+        val widToEng: Map<Int, String>
+    )
+
+    /** System + user word'leri yeniden insert ederek engWord→wordId map'lerini kurar. */
+    private suspend fun insertUserWordsAndBuildMaps(
+        data: BackupData,
+        imagePathMap: Map<String, String>
+    ): RestoreMaps {
+        val systemMap = mutableMapOf<String, Int>()
+        val userMap = mutableMapOf<String, Int>()
+        wordDao.getAllWords().forEach { systemMap[it.engWord] = it.wordId }
+        data.userWords.forEach { dto ->
+            val newId = wordDao.insertWord(
+                WordEntity(
+                    engWord = dto.engWord,
+                    turWord = dto.turWord,
+                    picturePath = dto.pictureFileName?.let { imagePathMap[it] },
+                    audioPath = null,
+                    level = dto.level,
+                    category = dto.category,
+                    source = Constants.USER_SOURCE,
+                    createdAt = dto.createdAt
+                )
+            ).toInt()
+            userMap[dto.engWord] = newId
+        }
+        val widToEng = mutableMapOf<Int, String>().apply {
+            systemMap.forEach { (eng, wid) -> put(wid, eng) }
+            userMap.forEach { (eng, wid) -> put(wid, eng) }
+        }
+        return RestoreMaps(systemMap, userMap, widToEng)
+    }
+
+    private suspend fun insertSamples(data: BackupData, maps: RestoreMaps) {
+        val sampleEntities = data.wordSamples.mapNotNull {
+            val wid = maps.userMap[it.engWord] ?: maps.systemMap[it.engWord] ?: return@mapNotNull null
+            WordSampleEntity(wordId = wid, sentence = it.sentence)
+        }
+        if (sampleEntities.isNotEmpty()) wordSampleDao.insertSamples(sampleEntities)
+    }
+
+    private data class ProgressRestoreOutcome(val restored: Int, val dropped: Int)
+
+    /** Dedup + her engWord için system & user wid'lerine ayrı kayıt insert eder. */
+    private suspend fun restoreProgress(data: BackupData, maps: RestoreMaps): ProgressRestoreOutcome {
+        val deduped = data.progress
+            .groupBy { it.engWord }
+            .mapNotNull { (_, candidates) -> pickRichestProgress(candidates) }
+        val duplicatesSkipped = data.progress.size - deduped.size
+
+        var restored = 0
+        var dropped = duplicatesSkipped
+        deduped.forEach { dto ->
+            val targets = listOfNotNull(maps.systemMap[dto.engWord], maps.userMap[dto.engWord]).distinct()
+            if (targets.isEmpty()) {
+                dropped++
+                return@forEach
+            }
+            targets.forEach { wid ->
+                wordProgressDao.insertProgress(dto.toEntity(wid))
+                restored++
+            }
+        }
+        return ProgressRestoreOutcome(restored, dropped)
+    }
+
+    private fun WordProgressDto.toEntity(wid: Int): WordProgressEntity =
+        WordProgressEntity(
+            wordId = wid,
+            correctStreak = correctStreak,
+            reviewStage = reviewStage,
+            totalCorrect = totalCorrect,
+            totalAttempts = totalAttempts,
+            nextReviewDate = nextReviewDate,
+            lastAnsweredDate = lastAnsweredDate,
+            isLearned = if (isLearned) 1 else 0,
+            lastShownDate = lastShownDate
+        )
+
+    /** Yeni atanan progressId'lerle (engWord → progressId) map'i kurar. */
+    private suspend fun buildProgressByEng(widToEng: Map<Int, String>): Map<String, Int> {
+        val byEng = mutableMapOf<String, Int>()
+        wordProgressDao.getAllProgress().forEach { p ->
+            val eng = widToEng[p.wordId] ?: return@forEach
+            byEng[eng] = p.progressId
+        }
+        return byEng
+    }
+
+    private suspend fun restoreSessions(data: BackupData): Map<Int, Int> {
+        val map = mutableMapOf<Int, Int>()
+        data.quizSessions.forEach { s ->
+            val newId = quizSessionDao.insertSession(
+                QuizSessionEntity(
+                    sessionDate = s.sessionDate,
+                    totalQuestions = s.totalQuestions,
+                    correctCount = s.correctCount,
+                    durationSeconds = s.durationSeconds
+                )
+            ).toInt()
+            map[s.originalSessionId] = newId
+        }
+        return map
+    }
+
+    private data class AnswerRestoreOutcome(val restored: Int, val dropped: Int)
+
+    private suspend fun restoreAnswers(
+        data: BackupData,
+        oldToNewSession: Map<Int, Int>,
+        progressByEng: Map<String, Int>
+    ): AnswerRestoreOutcome {
+        var restored = 0
+        var dropped = 0
+        data.quizAnswers.forEach { a ->
+            val sid = oldToNewSession[a.originalSessionId]
+            val pid = progressByEng[a.engWord]
+            if (sid == null || pid == null) {
+                dropped++
+                return@forEach
+            }
+            quizAnswerDao.insertAnswer(
+                QuizAnswerEntity(
+                    sessionId = sid,
+                    progressId = pid,
+                    isCorrect = if (a.isCorrect) 1 else 0,
+                    answeredAt = a.answeredAt
+                )
+            )
+            restored++
+        }
+        return AnswerRestoreOutcome(restored, dropped)
+    }
+
+    private suspend fun restoreSettings(data: BackupData, preservedUid: String) {
+        data.settings?.let { dto ->
+            settingsDao.insertSettings(
+                SettingsEntity(
+                    id = 1,
+                    firebaseUid = preservedUid,
+                    displayName = dto.displayName,
+                    dailyNewWordCount = dto.dailyNewWordCount,
+                    userLevel = dto.userLevel,
+                    updatedAt = dto.updatedAt
+                )
+            )
+        }
+    }
+
+    private suspend fun restoreStories(data: BackupData, imagePathMap: Map<String, String>) {
+        val storyEntities = data.stories.map { s ->
+            val img = s.imageFileName?.let { imagePathMap[it] }
+            StoryEntity(
+                words = s.words,
+                storyText = s.storyText,
+                imagePath = img ?: s.imageFileName?.takeIf { !s.isLocalImage },
+                isLocalImage = s.isLocalImage && img != null,
+                createdAt = s.createdAt
+            )
+        }
+        if (storyEntities.isNotEmpty()) storyDao.insertAll(storyEntities)
     }
 
     // ---------- helpers ----------

@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -62,19 +62,17 @@ fun NavGraph() {
     val authViewModel: AuthViewModel = hiltViewModel()
     val authState by authViewModel.authState.collectAsState()
 
-    // Erken çıkışlar: bunlar bütün ekranı kaplayan tam ekran state'ler.
-    when {
-        authState.isLoading -> {
-            LoadingScreen(); return
-        }
-        authState.needsEmailVerification -> {
-            EmailVerificationScreen(
-                authViewModel = authViewModel,
-                email = authState.verificationEmail,
-                onBackToLogin = { /* authState değişimi recomposition tetikler */ }
-            )
-            return
-        }
+    if (authState.isLoading) {
+        LoadingScreen()
+        return
+    }
+    if (authState.needsEmailVerification) {
+        EmailVerificationScreen(
+            authViewModel = authViewModel,
+            email = authState.verificationEmail,
+            onBackToLogin = { /* authState değişimi recomposition tetikler */ }
+        )
+        return
     }
 
     val navController = rememberNavController()
@@ -82,42 +80,14 @@ fun NavGraph() {
     val currentRoute = backStack?.destination?.route
     val isMainTab = currentRoute.isBottomNavRoute()
 
-    // Auth state değişince doğru graph'a yönlendir (login → main, logout → auth).
     LaunchedEffect(authState.isLoggedIn) {
-        val target = if (authState.isLoggedIn) Screen.GRAPH_MAIN else Screen.GRAPH_AUTH
-        // currentDestination null ise NavHost graph'ı henüz set etmemiş demektir
-        // (ör. activity.recreate() sonrası). startDestination zaten doğru yere yönlendirir.
-        if (navController.currentDestination == null) return@LaunchedEffect
-        if (navController.currentDestination?.parent?.route != target) {
-            navController.navigate(target) {
-                // Tüm back stack'i temizle — auth/main arası geri tuşuyla geçilemesin.
-                popUpTo(navController.graph.id) { inclusive = true }
-                launchSingleTop = true
-            }
-        }
+        switchAuthGraph(navController, authState.isLoggedIn)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
-            topBar = {
-                val detailTitle = titleForRoute(currentRoute)
-                if (detailTitle.isNotEmpty()) {
-                    TopAppBar(
-                        title = { Text(detailTitle, fontWeight = FontWeight.Bold) },
-                        navigationIcon = {
-                            IconButton(onClick = { navController.popBackStack() }) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Geri")
-                            }
-                        },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = MaterialTheme.colorScheme.surface
-                        )
-                    )
-                }
-            },
-            bottomBar = {
-                if (isMainTab) MainBottomBar(navController, currentRoute)
-            }
+            topBar = { DetailTopBar(currentRoute, navController::popBackStack) },
+            bottomBar = { if (isMainTab) MainBottomBar(navController, currentRoute) }
         ) { innerPadding ->
             NavHost(
                 navController = navController,
@@ -125,10 +95,50 @@ fun NavGraph() {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 authGraph(navController, authViewModel)
-                mainGraph(navController, authViewModel, userName = authState.userName, isGuest = authState.isGuest)
+                mainGraph(
+                    navController = navController,
+                    authViewModel = authViewModel,
+                    userName = authState.userName,
+                    isGuest = authState.isGuest
+                )
             }
         }
     }
+}
+
+/** Auth state değişince doğru graph'a yönlendir (login → main, logout → auth). */
+private fun switchAuthGraph(
+    navController: NavHostController,
+    isLoggedIn: Boolean
+) {
+    val target = if (isLoggedIn) Screen.GRAPH_MAIN else Screen.GRAPH_AUTH
+    // currentDestination null ise NavHost graph'ı henüz set etmemiş demektir
+    // (ör. activity.recreate() sonrası). startDestination zaten doğru yere yönlendirir.
+    val current = navController.currentDestination ?: return
+    if (current.parent?.route == target) return
+    navController.navigate(target) {
+        // Tüm back stack'i temizle — auth/main arası geri tuşuyla geçilemesin.
+        popUpTo(navController.graph.id) { inclusive = true }
+        launchSingleTop = true
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun DetailTopBar(currentRoute: String?, onBack: () -> Unit) {
+    val detailTitle = titleForRoute(currentRoute)
+    if (detailTitle.isEmpty()) return
+    TopAppBar(
+        title = { Text(detailTitle, fontWeight = FontWeight.Bold) },
+        navigationIcon = {
+            IconButton(onClick = onBack) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Geri")
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    )
 }
 
 @Composable

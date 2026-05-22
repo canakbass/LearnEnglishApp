@@ -59,32 +59,12 @@ fun SettingsScreen(
 
     // Yedek olaylarını snackbar olarak göster; import sonrası ekranı yenile.
     LaunchedEffect(backupEvent) {
-        when (val e = backupEvent) {
-            is BackupUiEvent.ExportSuccess -> {
-                snackbarHostState.showSnackbar("✓ Yedek hazırlandı (${e.wordCount} kelime dahil)")
-                viewModel.clearBackupEvent()
-            }
-            is BackupUiEvent.ImportSuccess -> {
-                val msg = buildString {
-                    append("✓ Geri yüklendi: ${e.wordCount} kelime, ")
-                    append("${e.progressRestored} ilerleme, ${e.answersRestored} cevap")
-                    if (e.progressDropped > 0 || e.answersDropped > 0) {
-                        append(" • atlanan: ${e.progressDropped} ilerleme, ${e.answersDropped} cevap")
-                    }
-                }
-                snackbarHostState.showSnackbar(msg)
-                viewModel.clearBackupEvent()
-                // Import sonrası tüm ViewModel'lerin güncel veriyi çekmesi için Activity yeniden başlat.
-                if (e.needsRestart) {
-                    activity?.recreate()
-                }
-            }
-            is BackupUiEvent.Error -> {
-                snackbarHostState.showSnackbar("Hata: ${e.message}")
-                viewModel.clearBackupEvent()
-            }
-            else -> {}
-        }
+        handleBackupEvent(
+            event = backupEvent,
+            snackbarHostState = snackbarHostState,
+            onClear = viewModel::clearBackupEvent,
+            onRecreate = { activity?.recreate() }
+        )
     }
 
     // Kullanıcı adı değiştirme dialog'u
@@ -421,4 +401,40 @@ private fun suggestedBackupFileName(): String {
     val ts = java.text.SimpleDateFormat("yyyyMMdd_HHmm", java.util.Locale.getDefault())
         .format(java.util.Date())
     return "wordlearn-backup-$ts.zip"
+}
+
+/**
+ * Backup event'ine göre snackbar göster + state temizle.
+ * Composable ana fonksiyonunun cognitive complexity'sini düşürür.
+ */
+private suspend fun handleBackupEvent(
+    event: BackupUiEvent,
+    snackbarHostState: SnackbarHostState,
+    onClear: () -> Unit,
+    onRecreate: () -> Unit
+) {
+    when (event) {
+        is BackupUiEvent.ExportSuccess -> {
+            snackbarHostState.showSnackbar("✓ Yedek hazırlandı (${event.wordCount} kelime dahil)")
+            onClear()
+        }
+        is BackupUiEvent.ImportSuccess -> {
+            snackbarHostState.showSnackbar(formatImportSuccess(event))
+            onClear()
+            if (event.needsRestart) onRecreate()
+        }
+        is BackupUiEvent.Error -> {
+            snackbarHostState.showSnackbar("Hata: ${event.message}")
+            onClear()
+        }
+        else -> {}
+    }
+}
+
+private fun formatImportSuccess(event: BackupUiEvent.ImportSuccess): String = buildString {
+    append("✓ Geri yüklendi: ${event.wordCount} kelime, ")
+    append("${event.progressRestored} ilerleme, ${event.answersRestored} cevap")
+    if (event.progressDropped > 0 || event.answersDropped > 0) {
+        append(" • atlanan: ${event.progressDropped} ilerleme, ${event.answersDropped} cevap")
+    }
 }

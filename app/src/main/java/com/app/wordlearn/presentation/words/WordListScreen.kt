@@ -51,106 +51,136 @@ fun WordListScreen(
     LaunchedEffect(Unit) { viewModel.loadWords() }
 
     pendingDelete?.let { word ->
-        AlertDialog(
-            onDismissRequest = { pendingDelete = null },
-            title = { Text("Kelimeyi sil") },
-            text = {
-                Text(
-                    "\"${word.engWord}\" kelimesini ve buna bağlı tüm ilerleme/cevap kayıtlarını " +
-                        "silmek istediğinize emin misiniz? Bu işlem geri alınamaz."
-                )
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    viewModel.deleteUserWord(word)
-                    pendingDelete = null
-                }) { Text("Sil", color = MaterialTheme.colorScheme.error) }
-            },
-            dismissButton = {
-                TextButton(onClick = { pendingDelete = null }) { Text("İptal") }
-            }
+        DeleteWordDialog(
+            word = word,
+            onConfirm = { viewModel.deleteUserWord(word); pendingDelete = null },
+            onDismiss = { pendingDelete = null }
         )
     }
 
     if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
+        LoadingBox()
+        return
+    }
+
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = onAddWordClick) {
+                Icon(Icons.Default.Add, "Kelime Ekle")
+            }
         }
-    } else {
-        Scaffold(
-            floatingActionButton = {
-                FloatingActionButton(onClick = onAddWordClick) {
-                    Icon(Icons.Default.Add, "Kelime Ekle")
-                }
+    ) { padding ->
+        Column(modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)) {
+            Text("📚 Kelime Listesi", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(12.dp))
+
+            WordListTabs(selectedTab, tabCounts, viewModel::selectTab)
+            Spacer(modifier = Modifier.height(12.dp))
+
+            SearchField(searchQuery, viewModel::searchWords)
+            Spacer(modifier = Modifier.height(12.dp))
+
+            WordListBody(
+                words = words,
+                selectedTab = selectedTab,
+                progressByWordId = progressByWordId,
+                onPlay = onPlay,
+                onDelete = onDelete
+            )
+        }
+    }
+}
+
+@Composable
+private fun LoadingBox() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
+
+@Composable
+private fun DeleteWordDialog(word: Word, onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Kelimeyi sil") },
+        text = {
+            Text(
+                "\"${word.engWord}\" kelimesini ve buna bağlı tüm ilerleme/cevap kayıtlarını " +
+                    "silmek istediğinize emin misiniz? Bu işlem geri alınamaz."
+            )
+        },
+        confirmButton = {
+            TextButton(onClick = onConfirm) { Text("Sil", color = MaterialTheme.colorScheme.error) }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("İptal") } }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun WordListTabs(
+    selectedTab: WordListTab,
+    tabCounts: Pair<Int, Int>,
+    onSelectTab: (WordListTab) -> Unit
+) {
+    TabRow(selectedTabIndex = if (selectedTab == WordListTab.Unlearned) 0 else 1) {
+        Tab(
+            selected = selectedTab == WordListTab.Unlearned,
+            onClick = { onSelectTab(WordListTab.Unlearned) },
+            text = { Text("Öğrenilmemiş (${tabCounts.first})") }
+        )
+        Tab(
+            selected = selectedTab == WordListTab.InProgress,
+            onClick = { onSelectTab(WordListTab.InProgress) },
+            text = { Text("Öğreniyorum (${tabCounts.second})") }
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SearchField(query: String, onQueryChange: (String) -> Unit) {
+    OutlinedTextField(
+        value = query,
+        onValueChange = onQueryChange,
+        modifier = Modifier.fillMaxWidth(),
+        placeholder = { Text("Kelime ara...") },
+        leadingIcon = { Icon(Icons.Default.Search, null) },
+        singleLine = true
+    )
+}
+
+@Composable
+private fun WordListBody(
+    words: List<Word>,
+    selectedTab: WordListTab,
+    progressByWordId: Map<Int, WordProgress>,
+    onPlay: (Word) -> Unit,
+    onDelete: (Word) -> Unit
+) {
+    if (words.isEmpty()) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            val msg = when (selectedTab) {
+                WordListTab.Unlearned -> "Hiç başlanmamış kelime kalmadı 🎉"
+                WordListTab.InProgress -> "Henüz hiçbir kelimeye başlamadın"
             }
-        ) { padding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .padding(16.dp)
-            ) {
-                Text("📚 Kelime Listesi", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                // Sekme şeridi — solda öğrenilmemiş, sağda öğrenmekte/öğrenildi.
-                TabRow(
-                    selectedTabIndex = if (selectedTab == WordListTab.Unlearned) 0 else 1
-                ) {
-                    Tab(
-                        selected = selectedTab == WordListTab.Unlearned,
-                        onClick = { viewModel.selectTab(WordListTab.Unlearned) },
-                        text = { Text("Öğrenilmemiş (${tabCounts.first})") }
-                    )
-                    Tab(
-                        selected = selectedTab == WordListTab.InProgress,
-                        onClick = { viewModel.selectTab(WordListTab.InProgress) },
-                        text = { Text("Öğreniyorum (${tabCounts.second})") }
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { viewModel.searchWords(it) },
-                    modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Kelime ara...") },
-                    leadingIcon = { Icon(Icons.Default.Search, null) },
-                    singleLine = true
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                if (words.isEmpty()) {
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        val msg = when (selectedTab) {
-                            WordListTab.Unlearned -> "Hiç başlanmamış kelime kalmadı 🎉"
-                            WordListTab.InProgress -> "Henüz hiçbir kelimeye başlamadın"
-                        }
-                        Text(msg, color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
-                    }
-                } else {
-                    LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(
-                            items = words,
-                            // Stable identity → scroll sırasında recomposition skip mümkün.
-                            key = { it.wordId },
-                            // Aynı layout (resimsiz vs resimli) recycle edilir.
-                            contentType = { if (it.picturePath == null) "text" else "image" }
-                        ) { word ->
-                            WordRow(
-                                word = word,
-                                inProgressTab = selectedTab == WordListTab.InProgress,
-                                progress = progressByWordId[word.wordId],
-                                onPlay = onPlay,
-                                onDelete = onDelete
-                            )
-                        }
-                    }
-                }
-            }
+            Text(msg, color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+        }
+        return
+    }
+    LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(
+            items = words,
+            key = { it.wordId },
+            contentType = { if (it.picturePath == null) "text" else "image" }
+        ) { word ->
+            WordRow(
+                word = word,
+                inProgressTab = selectedTab == WordListTab.InProgress,
+                progress = progressByWordId[word.wordId],
+                onPlay = onPlay,
+                onDelete = onDelete
+            )
         }
     }
 }
