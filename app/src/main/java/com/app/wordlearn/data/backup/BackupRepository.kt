@@ -134,11 +134,7 @@ class BackupRepository @Inject constructor(
                 )
             }
                 .groupBy({ it.first }, { it.second })
-                .map { (_, candidates) ->
-                    candidates.maxByOrNull {
-                        it.totalAttempts * 1_000_000L + it.totalCorrect + (if (it.isLearned) 1 else 0)
-                    }!!
-                }
+                .mapNotNull { (_, candidates) -> pickRichestProgress(candidates) }
 
             val progressIdToEng: Map<Int, String> = allProgress.mapNotNull { p ->
                 val eng = allWordsById[p.wordId]?.engWord ?: return@mapNotNull null
@@ -376,11 +372,7 @@ class BackupRepository @Inject constructor(
                 // (sistem + user word çakışması). En bilgili olanı (totalAttempts en yüksek) koru.
                 val dedupedProgress = data.progress
                     .groupBy { it.engWord }
-                    .map { (_, candidates) ->
-                        candidates.maxByOrNull {
-                            it.totalAttempts * 1_000_000L + it.totalCorrect + (if (it.isLearned) 1 else 0)
-                        }!!
-                    }
+                    .mapNotNull { (_, candidates) -> pickRichestProgress(candidates) }
                 val duplicatesSkipped = data.progress.size - dedupedProgress.size
 
                 dedupedProgress.forEach { dto ->
@@ -499,6 +491,17 @@ class BackupRepository @Inject constructor(
     }
 
     // ---------- helpers ----------
+
+    /**
+     * Aynı engWord'e sahip birden fazla progress DTO arasında en zengin bilgi taşıyanı seçer.
+     * Skor: totalAttempts ağırlıklı (öne çıkar) + totalCorrect + öğrenilmiş bonus.
+     * Boş liste null döner (mapNotNull ile zincire takılır).
+     */
+    private fun pickRichestProgress(candidates: List<WordProgressDto>): WordProgressDto? =
+        candidates.maxByOrNull {
+            it.totalAttempts * 1_000_000L + it.totalCorrect + (if (it.isLearned) 1 else 0)
+        }
+
     private fun resolveExistingInput(path: String): InputStream? {
         val file = File(path)
         if (file.isFile) return FileInputStream(file)

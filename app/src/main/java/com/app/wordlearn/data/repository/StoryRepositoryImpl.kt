@@ -5,6 +5,7 @@ import com.app.wordlearn.data.local.dao.StoryDao
 import com.app.wordlearn.data.local.entity.StoryEntity
 import com.app.wordlearn.domain.model.Story
 import com.app.wordlearn.domain.repository.StoryRepository
+import com.app.wordlearn.domain.util.CrashReporter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -64,7 +65,7 @@ class StoryRepositoryImpl @Inject constructor(
                     finalImagePath = file.absolutePath
                     isLocal = true
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    CrashReporter.reportException(TAG, "Story image download failed", e)
                     // Fallback to URL if download fails
                     finalImagePath = imageUrl
                 }
@@ -90,7 +91,7 @@ class StoryRepositoryImpl @Inject constructor(
                         file.delete()
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    CrashReporter.reportException(TAG, "Local story image delete failed", e)
                 }
             }
             
@@ -121,5 +122,9 @@ class StoryRepositoryImpl @Inject constructor(
             isLocalImage = isLocalImage,
             createdAt = createdAt
         )
+    }
+
+    companion object {
+        private const val TAG = "StoryRepository"
     }
 }

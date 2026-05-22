@@ -66,15 +66,15 @@ class InitializeDatabaseUseCase @Inject constructor(
      * sampleId autoGenerate, unique constraint yok.
      */
     private suspend fun insertSamplesForSeed(seedItems: List<SystemWordSeedDto>) {
-        val seedSamples = seedItems.filter { !it.exampleSentence.isNullOrBlank() }
-        if (seedSamples.isEmpty()) return
-
         val systemWords = wordDao.getSystemWords()
+        if (systemWords.isEmpty()) return
         val engToWordId = systemWords.associate { it.engWord to it.wordId }
 
-        val entities = seedSamples.mapNotNull { dto ->
+        val entities = seedItems.mapNotNull { dto ->
+            val sentence = dto.exampleSentence?.trim()?.takeIf { it.isNotEmpty() }
+                ?: return@mapNotNull null
             val wid = engToWordId[dto.engWord] ?: return@mapNotNull null
-            WordSampleEntity(wordId = wid, sentence = dto.exampleSentence!!.trim())
+            WordSampleEntity(wordId = wid, sentence = sentence)
         }
         if (entities.isNotEmpty()) {
             wordSampleDao.insertSamples(entities)
@@ -90,9 +90,10 @@ class InitializeDatabaseUseCase @Inject constructor(
         val systemWords = wordDao.getSystemWords()
         if (systemWords.isEmpty()) return
 
-        val seedByEng = seedItems
-            .filter { !it.exampleSentence.isNullOrBlank() }
-            .associate { it.engWord to it.exampleSentence!!.trim() }
+        val seedByEng: Map<String, String> = seedItems.mapNotNull { dto ->
+            val sentence = dto.exampleSentence?.trim()?.takeIf { it.isNotEmpty() } ?: return@mapNotNull null
+            dto.engWord to sentence
+        }.toMap()
         if (seedByEng.isEmpty()) return
 
         val toInsert = mutableListOf<WordSampleEntity>()
