@@ -13,9 +13,15 @@ import com.app.wordlearn.domain.util.TtsManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -31,6 +37,7 @@ import javax.inject.Inject
 enum class WordListTab { Unlearned, InProgress }
 
 @HiltViewModel
+@OptIn(FlowPreview::class)
 class WordListViewModel @Inject constructor(
     private val wordRepository: WordRepository,
     private val progressRepository: ProgressRepository,
@@ -41,7 +48,12 @@ class WordListViewModel @Inject constructor(
 
     // Tüm kelimeler + filtrelenmiş liste — UI sekme/aramaya göre filtrelenmiş halini gösterir.
     private val _allWords = MutableStateFlow<List<Word>>(emptyList())
-    private val _progressByWordId = MutableStateFlow<Map<Int, com.app.wordlearn.domain.model.WordProgress>>(emptyMap())
+    private val _progressByWordId =
+        MutableStateFlow<Map<Int, com.app.wordlearn.domain.model.WordProgress>>(emptyMap())
+
+    /** Item composable'ları tek bir map argümanı alır — function call yerine direkt lookup. */
+    val progressByWordId: StateFlow<Map<Int, com.app.wordlearn.domain.model.WordProgress>> =
+        _progressByWordId.asStateFlow()
 
     private val _words = MutableStateFlow<List<Word>>(emptyList())
     val words: StateFlow<List<Word>> = _words.asStateFlow()
@@ -59,6 +71,16 @@ class WordListViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
+    init {
+        // 300ms debounce ile filtreyi uygula — yazma sırasında 1000 kelimeyi her tuşta tarama yok.
+        // İlk değer (drop(1)) atlanır; ilk yükleme loadWords()'tan tetiklenir.
+        _searchQuery
+            .drop(1)
+            .debounce(300L)
+            .onEach { applyFilters() }
+            .launchIn(viewModelScope)
+    }
+
     fun loadWords() {
         viewModelScope.launch(Dispatchers.IO) {
             _isLoading.value = true
@@ -70,8 +92,8 @@ class WordListViewModel @Inject constructor(
     }
 
     fun searchWords(query: String) {
+        // Sadece state'i güncelle — filtre debounce ile tetiklenir.
         _searchQuery.value = query
-        applyFilters()
     }
 
     fun selectTab(tab: WordListTab) {
@@ -109,9 +131,9 @@ class WordListViewModel @Inject constructor(
         }
     }
 
-    /** Bir kelimenin progress'ini UI'da rozet/etiket göstermek için döner. */
-    fun progressFor(wordId: Int): com.app.wordlearn.domain.model.WordProgress? =
-        _progressByWordId.value[wordId]
+    // progressFor(wordId): kaldırıldı — UI artık doğrudan progressByWordId StateFlow'ını
+    // tüketiyor ve map lookup'unu kendi composable'ında bir kere yapıyor. Bu sayede
+    // her item recomposition'da function call gerekmez.
 
     fun playAudio(word: String) {
         ttsManager.speak(word)

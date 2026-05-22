@@ -10,6 +10,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import com.app.wordlearn.domain.model.WordProgress
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
@@ -39,7 +40,11 @@ fun WordListScreen(
     val isLoading by viewModel.isLoading.collectAsState()
     val selectedTab by viewModel.selectedTab.collectAsState()
     val tabCounts by viewModel.tabCounts.collectAsState()
+    val progressByWordId by viewModel.progressByWordId.collectAsState()
     var pendingDelete by remember { mutableStateOf<Word?>(null) }
+    // Hot-path callback'leri remember'la sabitle — item composable'ları "stable" kalsın.
+    val onPlay = remember(viewModel) { { word: Word -> viewModel.playAudio(word.engWord) } }
+    val onDelete = remember { { word: Word -> pendingDelete = word } }
 
     // Her composition'da değil, ekran her geri geldiğinde de tazele — VM ayrı entry'de
     // olabileceği için kelime ekleme sonrası güncel listeyi göster.
@@ -128,66 +133,103 @@ fun WordListScreen(
                     }
                 } else {
                     LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(words) { word ->
-                            Card(modifier = Modifier.fillMaxWidth()) {
-                                Column {
-                                    // Kelimeye ait resim varsa göster
-                                    word.picturePath?.let { path ->
-                                        AsyncImage(
-                                            model = File(path),
-                                            contentDescription = word.engWord,
-                                            contentScale = ContentScale.Crop,
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .height(140.dp)
-                                                .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(16.dp),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Column(modifier = Modifier.weight(1f)) {
-                                            Text(word.engWord, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                                            Text(word.turWord, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface.copy(0.7f))
-                                        }
-                                        Row(verticalAlignment = Alignment.CenterVertically) {
-                                            IconButton(onClick = { viewModel.playAudio(word.engWord) }) {
-                                                Icon(Icons.Default.PlayArrow, contentDescription = "Sesli Oku")
-                                            }
-                                            // Silme butonu yalnızca user kelimeleri için — sistem kelimeleri korunur.
-                                            if (word.source == "user") {
-                                                IconButton(onClick = { pendingDelete = word }) {
-                                                    Icon(
-                                                        Icons.Default.Delete,
-                                                        contentDescription = "Sil",
-                                                        tint = MaterialTheme.colorScheme.error
-                                                    )
-                                                }
-                                            }
-                                            // Öğreniyorum sekmesinde stage rozeti göster
-                                            if (selectedTab == WordListTab.InProgress) {
-                                                val progress = viewModel.progressFor(word.wordId)
-                                                progress?.let { p ->
-                                                    AssistChip(
-                                                        onClick = {},
-                                                        label = { Text(stageBadge(p.reviewStage, p.isLearned), fontSize = 11.sp) }
-                                                    )
-                                                }
-                                            } else {
-                                                AssistChip(
-                                                    onClick = {},
-                                                    label = { Text(word.level, fontSize = 11.sp) }
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        items(
+                            items = words,
+                            // Stable identity → scroll sırasında recomposition skip mümkün.
+                            key = { it.wordId },
+                            // Aynı layout (resimsiz vs resimli) recycle edilir.
+                            contentType = { if (it.picturePath == null) "text" else "image" }
+                        ) { word ->
+                            WordRow(
+                                word = word,
+                                inProgressTab = selectedTab == WordListTab.InProgress,
+                                progress = progressByWordId[word.wordId],
+                                onPlay = onPlay,
+                                onDelete = onDelete
+                            )
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Tek bir kelime kartı. Skippable composable — tüm parametreleri stable.
+ *
+ * Performans notları:
+ *  - `word` ve `progress` data class'ları immutable (Compose otomatik stable).
+ *  - Callback'ler dışarıda `remember` ile sabitlendi → kart parametreleri değişmedikçe
+ *    Compose bu composable'ı SKIP eder (recomposition yok).
+ *  - `picturePath` için `File` objesi `remember(path)` ile cache'lenir, allocation 1x.
+ */
+@Composable
+private fun WordRow(
+    word: Word,
+    inProgressTab: Boolean,
+    progress: WordProgress?,
+    onPlay: (Word) -> Unit,
+    onDelete: (Word) -> Unit
+) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column {
+            val path = word.picturePath
+            if (path != null) {
+                val file = remember(path) { File(path) }
+                AsyncImage(
+                    model = file,
+                    contentDescription = word.engWord,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(140.dp)
+                        .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(word.engWord, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(
+                        word.turWord,
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.onSurface.copy(0.7f)
+                    )
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = { onPlay(word) }) {
+                        Icon(Icons.Default.PlayArrow, contentDescription = "Sesli Oku")
+                    }
+                    if (word.source == "user") {
+                        IconButton(onClick = { onDelete(word) }) {
+                            Icon(
+                                Icons.Default.Delete,
+                                contentDescription = "Sil",
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                        }
+                    }
+                    if (inProgressTab && progress != null) {
+                        AssistChip(
+                            onClick = {},
+                            label = {
+                                Text(
+                                    stageBadge(progress.reviewStage, progress.isLearned),
+                                    fontSize = 11.sp
+                                )
+                            }
+                        )
+                    } else {
+                        AssistChip(
+                            onClick = {},
+                            label = { Text(word.level, fontSize = 11.sp) }
+                        )
                     }
                 }
             }

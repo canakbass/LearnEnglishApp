@@ -245,6 +245,26 @@ Mevcut testler `app/src/test/.../domain/usecase/`:
 
 ---
 
+## Performans Notları
+
+- **Kelime listesi (1000+ kelime):** `LazyColumn` `items(items, key, contentType)`
+  ile item identity korunur, scroll'da recomposition skip aktif. Item
+  composable'ı (`WordRow`) skippable parametre tipleriyle tasarlandı;
+  callback'ler `remember`'la sabitlendi.
+- **Arama:** `MutableStateFlow` + `debounce(300L)` — kullanıcı yazarken her
+  tuş vuruşunda 1000 kelime taranmaz, son tuştan 300ms sonra tek seferde
+  filtre uygulanır.
+- **Resim yükleme:** Coil + `remember(path) { File(path) }` ile her
+  recomposition'da File allocation yok. Coil default memory cache ile resimli
+  user kelimelerinde scroll akıcı kalır.
+- **Quiz seçimi:** `BuildDailyQuizUseCase` tek adımda `allProgress` üzerinden
+  filter+sort yapar; eski 6 ayrı seçim adımı ve birden fazla DAO çağrısı
+  yerine bellekte tek sıralama.
+- **Cevap kaydı (`submitAnswer`)**: `withContext(NonCancellable)` ile sarılır
+  — kullanıcı ekrandan çıksa bile DB yazımı yarıda kalmaz.
+
+---
+
 ## Gizlilik
 
 - Tüm öğrenme verisi yerel `Room` veritabanında.
@@ -270,6 +290,27 @@ Mevcut testler `app/src/test/.../domain/usecase/`:
 - [ ] Type-safe Navigation (Compose Navigation 2.8+)
 - [ ] Daha fazla unit/instrumented test
 - [ ] Tema (dark/light) seçici (şu an sistem tercihini takip ediyor)
+
+---
+
+## Geliştirme Süreci — Şeffaflık
+
+Bu projenin önemli bir bölümü **Claude (Anthropic) AI asistanı** ile pair
+programming usulü geliştirildi. Pratik olarak:
+
+- Mimari kararlar, debugging, refactor, white-box test yazımı, performans
+  optimizasyonu, dokümantasyon ve README dahil; tasarım gözden geçirme,
+  bug avı (özellikle backup/restore + spaced repetition + LazyColumn jank),
+  ve karar dökümantasyonu birlikte yapıldı.
+- İnsan geliştirici (Can) ürün vizyonu, akış tasarımı, cihaz üzerinde
+  manuel test, UX kararları, Firebase Console konfigurasyonu ve son
+  onayları yürüttü. AI önerileri körü körüne uygulanmadı; her birim
+  inceleme + onay sonrası commit'lendi.
+- Git history'sindeki `Co-Authored-By: Claude` etiketi bu işbirliğinin
+  kayıt altındaki halidir.
+
+Bu disclosure modern yazılım geliştirme uygulamalarına uygun şeffaflık
+amacıyla eklenmiştir.
 
 ---
 
