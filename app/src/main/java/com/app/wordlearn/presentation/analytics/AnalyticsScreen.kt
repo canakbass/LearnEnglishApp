@@ -5,11 +5,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Print
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,6 +23,7 @@ import com.app.wordlearn.presentation.theme.Success
 @Composable
 fun AnalyticsScreen(viewModel: AnalyticsViewModel) {
     val uiState by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.loadAnalytics()
@@ -31,12 +35,26 @@ fun AnalyticsScreen(viewModel: AnalyticsViewModel) {
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        Text(
-            "📊 Analiz Raporu",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "📊 Analiz Raporu",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+            // Yazdır / PDF olarak kaydet — Android Print Framework açar.
+            (uiState as? AnalyticsUiState.Success)?.let { state ->
+                FilledTonalIconButton(
+                    onClick = { AnalyticsPrintHelper.print(context, state.data) }
+                ) {
+                    Icon(Icons.Default.Print, contentDescription = "Yazdır / PDF kaydet")
+                }
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 

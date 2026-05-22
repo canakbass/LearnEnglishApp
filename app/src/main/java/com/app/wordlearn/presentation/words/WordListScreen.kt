@@ -243,11 +243,12 @@ private fun WordRow(
  */
 private fun stageBadge(stage: Int, isLearned: Boolean): String = when {
     isLearned -> "✓ Öğrenildi"
-    stage == 1 -> "🌱 Başladım"
-    stage == 2 -> "🌿 Aşama 2"
-    stage == 3 -> "🌳 Aşama 3"
-    stage == 4 -> "💪 Aşama 4"
-    stage >= 5 -> "✓ Öğrenildi"
+    stage == 1 -> "🌱 1/6"
+    stage == 2 -> "🌿 2/6"
+    stage == 3 -> "🌳 3/6"
+    stage == 4 -> "💪 4/6"
+    stage == 5 -> "🏆 5/6"
+    stage >= 6 -> "✓ Öğrenildi"
     else -> "Yeni"
 }
 

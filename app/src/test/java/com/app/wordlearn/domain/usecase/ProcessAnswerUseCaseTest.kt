@@ -243,7 +243,8 @@ class ProcessAnswerUseCaseTest {
     }
 
     @Test
-    fun `stage 5 e gecince ogrenildi olarak isaretlenir ve bir daha asla due olmaz`() = runTest {
+    fun `stage 4 ten 5 e gecen kelime 1 yil sonra tekrar sorulur (henuz ogrenilmedi)`() = runTest {
+        val now = System.currentTimeMillis()
         val capture = slot<WordProgress>()
         coEvery { progressRepository.getProgress(1) } returns WordProgress(
             progressId = 1, wordId = 1, correctStreak = 5, reviewStage = 4,
@@ -254,8 +255,29 @@ class ProcessAnswerUseCaseTest {
         useCase.execute(1, 1, "elma", "elma")
 
         val updated = capture.captured
+        val daysUntilReview = (updated.nextReviewDate - now) / DAY
         assertEquals(5, updated.reviewStage)
-        assertTrue("Stage 5'e ulaşan kelime öğrenildi sayılmalı", updated.isLearned)
+        assertFalse("Spec'e göre 1 yıl tekrarı yapılmadan öğrenildi sayılamaz",
+            updated.isLearned)
+        assertTrue("Stage 5: ~365 gün sonra due, gerçek=$daysUntilReview",
+            daysUntilReview in 364..365)
+    }
+
+    @Test
+    fun `stage 5 ten 6 ya gecen kelime ogrenildi olur ve bir daha asla due olmaz`() = runTest {
+        val capture = slot<WordProgress>()
+        coEvery { progressRepository.getProgress(1) } returns WordProgress(
+            progressId = 1, wordId = 1, correctStreak = 5, reviewStage = 5,
+            totalCorrect = 35, totalAttempts = 35
+        )
+        coEvery { progressRepository.updateProgress(capture(capture)) } just Runs
+
+        useCase.execute(1, 1, "elma", "elma")
+
+        val updated = capture.captured
+        assertEquals("Spec: 6. zaman aralığı sonrası öğrenildi havuzuna",
+            6, updated.reviewStage)
+        assertTrue("Stage 6 = öğrenildi", updated.isLearned)
         assertEquals("Sonsuz nextReviewDate bekleniyor", Long.MAX_VALUE, updated.nextReviewDate)
     }
 
@@ -329,11 +351,11 @@ class ProcessAnswerUseCaseTest {
     }
 
     @Test
-    fun `stage 5 ogrenilmis kelimeye dogru cevap totalCorrect i artirmaz cunku no-op`() = runTest {
+    fun `stage 6 ogrenilmis kelimeye dogru cevap no-op (defansif return)`() = runTest {
         // Öğrenilmiş kelime quiz'e zaten alınmamalı; alındıysa bile defansif return yapılmalı.
         coEvery { progressRepository.getProgress(1) } returns WordProgress(
-            progressId = 1, wordId = 1, reviewStage = 5, isLearned = true,
-            totalCorrect = 30, totalAttempts = 30,
+            progressId = 1, wordId = 1, reviewStage = 6, isLearned = true,
+            totalCorrect = 36, totalAttempts = 36,
             nextReviewDate = Long.MAX_VALUE,
             lastAnsweredDate = startOfDayFor(System.currentTimeMillis()) + 1000L
         )

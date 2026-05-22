@@ -92,9 +92,10 @@ class ProcessAnswerUseCase @Inject constructor(
         val newStreak = progress.correctStreak + 1
 
         return if (newStreak >= Constants.STREAK_THRESHOLD) {
-            // 6 doğru üst üste: stage atlat, streak sıfırla
+            // 6 doğru üst üste: stage atlat, streak sıfırla.
+            // Spec'e göre 6 zaman aralığı (1g, 1h, 1ay, 3ay, 6ay, 1y) → 6 stage geçişi sonra öğrenildi.
             val newStage = progress.reviewStage + 1
-            val isLearned = newStage >= 5
+            val isLearned = newStage >= 6
             val nextReview = if (isLearned) {
                 Long.MAX_VALUE
             } else {
