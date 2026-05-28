@@ -1,22 +1,28 @@
 package com.app.wordlearn.domain.usecase
 
 import com.app.wordlearn.domain.model.LetterResult
+import com.app.wordlearn.domain.model.Word
+import com.app.wordlearn.domain.model.WordProgress
 import com.app.wordlearn.domain.model.WordleGameState
 import com.app.wordlearn.domain.repository.ProgressRepository
 import com.app.wordlearn.domain.repository.WordRepository
+import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
 class WordleUseCaseTest {
 
+    private lateinit var wordRepository: WordRepository
+    private lateinit var progressRepository: ProgressRepository
     private lateinit var useCase: WordleUseCase
 
     @Before
     fun setup() {
-        val wordRepository: WordRepository = mockk(relaxed = true)
-        val progressRepository: ProgressRepository = mockk(relaxed = true)
+        wordRepository = mockk(relaxed = true)
+        progressRepository = mockk(relaxed = true)
         useCase = WordleUseCase(wordRepository, progressRepository)
     }
 
@@ -102,5 +108,40 @@ class WordleUseCaseTest {
         val newState = useCase.submitGuess(state, "OTHER")
 
         assertEquals(state, newState) // Değişmemeli
+    }
+
+    // ---- startNewGame havuz seçimi ----
+
+    @Test
+    fun `ogrenilmis 5 harfli kelime varsa isFallback false`() = runTest {
+        val allWords = listOf(
+            Word(wordId = 1, engWord = "BRAIN", turWord = "beyin"),
+            Word(wordId = 2, engWord = "HOUSE", turWord = "ev")
+        )
+        coEvery { wordRepository.getAllWords() } returns allWords
+        coEvery { progressRepository.getLearnedWords() } returns listOf(
+            WordProgress(wordId = 1, isLearned = true)
+        )
+
+        val state = useCase.startNewGame()
+
+        assertEquals("BRAIN", state.targetWord)
+        assertFalse("Öğrenilmiş havuzdan seçildi; banner gösterilmemeli", state.isFallback)
+    }
+
+    @Test
+    fun `ogrenilmis 5 harfli kelime yoksa fallback ve isFallback true`() = runTest {
+        val allWords = listOf(
+            Word(wordId = 1, engWord = "BRAIN", turWord = "beyin"),
+            Word(wordId = 2, engWord = "HOUSE", turWord = "ev")
+        )
+        coEvery { wordRepository.getAllWords() } returns allWords
+        // Hiç öğrenilmiş kelime yok
+        coEvery { progressRepository.getLearnedWords() } returns emptyList()
+
+        val state = useCase.startNewGame()
+
+        assertTrue(state.targetWord in setOf("BRAIN", "HOUSE"))
+        assertTrue("Fallback'e düşüldü; UI banner göstermeli", state.isFallback)
     }
 }

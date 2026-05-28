@@ -8,7 +8,13 @@ data class WordleGameState(
     val guessResults: List<List<LetterResult>> = emptyList(),
     val keyboardState: Map<Char, LetterResult> = emptyMap(),
     val isGameOver: Boolean = false,
-    val isWon: Boolean = false
+    val isWon: Boolean = false,
+    /**
+     * Hedef kelime "öğrenilmiş kelimeler" havuzundan değil, fallback olarak
+     * tüm sistem havuzundan seçildiyse `true`. Wordle ekranı kullanıcıya
+     * küçük bir bilgilendirme yazısı gösterir, oyun normal çalışmaya devam eder.
+     */
+    val isFallback: Boolean = false
 )
 
 enum class LetterResult {

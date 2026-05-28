@@ -11,30 +11,25 @@ class WordleUseCase @Inject constructor(
     private val progressRepository: ProgressRepository
 ) {
     suspend fun startNewGame(): WordleGameState {
-        // 1. Önce öğrenilen kelimelerden 5 harfli seç
+        // 1. Önce öğrenilmiş kelimelerden 5 harfli seç
         val learnedWords = progressRepository.getLearnedWords()
         val allWords = wordRepository.getAllWords()
+        val learnedIds = learnedWords.mapTo(mutableSetOf()) { it.wordId }
 
-        val learnedWordMap = learnedWords.associateBy { it.wordId }
-
-        // Öğrenilmiş 5 harfli kelimeleri filtrele
-        var fiveLetterWords = allWords.filter { word ->
-            word.engWord.length == 5 && learnedWordMap.containsKey(word.wordId)
+        val learnedFiveLetter = allWords.filter {
+            it.engWord.length == 5 && it.wordId in learnedIds
         }
 
-        // Öğrenilen yeterli değilse tüm havuzdan seç
-        if (fiveLetterWords.isEmpty()) {
-            fiveLetterWords = allWords.filter { it.engWord.length == 5 }
-        }
-
-        val targetWord = if (fiveLetterWords.isNotEmpty()) {
-            fiveLetterWords.random().engWord.uppercase()
+        // Öğrenilmiş havuzda 5 harfli yoksa fallback: sistem havuzunun tamamından seç,
+        // ve isFallback = true ile UI'a bilgilendirme banner'ı tetiklesin.
+        val (pool, isFallback) = if (learnedFiveLetter.isNotEmpty()) {
+            learnedFiveLetter to false
         } else {
-            // Fallback: havuzda 5 harfli kelime yoksa
-            "BRAIN"
+            allWords.filter { it.engWord.length == 5 } to true
         }
 
-        return WordleGameState(targetWord = targetWord)
+        val targetWord = pool.randomOrNull()?.engWord?.uppercase() ?: "BRAIN"
+        return WordleGameState(targetWord = targetWord, isFallback = isFallback)
     }
 
     fun submitGuess(state: WordleGameState, guess: String): WordleGameState {

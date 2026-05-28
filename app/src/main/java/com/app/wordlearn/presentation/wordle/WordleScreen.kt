@@ -48,6 +48,7 @@ fun WordleScreen(viewModel: WordleViewModel) {
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
         )
+        if (gameState.isFallback) FallbackNotice()
         Spacer(modifier = Modifier.height(16.dp))
 
         WordleGrid(gameState)
@@ -67,6 +68,20 @@ fun WordleScreen(viewModel: WordleViewModel) {
             onBackspace = viewModel::onBackspace
         )
     }
+}
+
+/**
+ * Hedef kelime "öğrenilmiş" havuzunda bulunamadığında gösterilen küçük not.
+ * Oyunu kesintiye uğratmaz; sadece kullanıcıyı durumdan haberdar eder.
+ */
+@Composable
+private fun FallbackNotice() {
+    Text(
+        text = "Şu anda öğrenilen kelime bulunmamakta — bu nedenle rastgele kelime seçildi.",
+        fontSize = 11.sp,
+        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+        modifier = Modifier.padding(top = 4.dp)
+    )
 }
 
 @Composable
